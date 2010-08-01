@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Settings">
+    <PropertiesPanelView>
+        <Property key="PanelMinimized" value="false"/>
+        <Property key="PanelMinimized" value="false"/>
+        <Property key="PanelMinimized" value="false"/>
+        <Property key="PanelMinimized" value="false"/>
+        <Property key="PanelMinimized" value="false"/>
+        <Property key="PanelMinimized" value="false"/>
+    </PropertiesPanelView>
+    <SettingsWindow>
+        <Property key="Grid" value="8"/>
+        <Property key="ShowName" value="true"/>
+        <Property key="ShowType" value="true"/>
+        <Property key="ShowSkin" value="true"/>
+        <Property key="EdgeHide" value="false"/>
+    </SettingsWindow>
+    <WidgetsWindow>
+        <Property key="widgetsButtonWidth" value="135"/>
+        <Property key="widgetsButtonHeight" value="24"/>
+        <Property key="widgetsButtonsInOneLine" value="5"/>
+        <Property key="lastSkinGroup" value="Default"/>
+    </WidgetsWindow>
+    <MetaSolutionWindow>
+        <Property key="MetaSolutionName" value=""/>
+    </MetaSolutionWindow>
+    <RecentFile name="H:\SKOLE\SVN_MASTER\code\OgreSnowSim\build\resources\MyGUI\Demos\Demo_Pointers/FriendPanel.layout"/>
+    <RecentFile name="H:\SKOLE\SVN_MASTER\code\OgreSnowSim\build\resources\MyGUI\Demos\Demo_Pointers/ControlPanel.layout"/>
+</MyGUI>
