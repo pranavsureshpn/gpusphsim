@@ -95,13 +95,13 @@ void testFluidSimLive()
 
 void testFluidSim()
 {
-	SimulationSystem *system = new SimulationSystem(false);
+	SimulationSystem *system = new SimulationSystem(true);
 	system->Init();
 
-	system->GetSettings()->SetValue("Timestep", 0.0005);
-	system->GetSettings()->SetValue("Particles Number", 512*1024);
+	system->GetSettings()->SetValue("Timestep", 0.002);
+	system->GetSettings()->SetValue("Particles Number", 32*1024);
 	system->GetSettings()->SetValue("Grid World Size",  1024);
-	system->GetSettings()->SetValue("Simulation Scale",  0.0005);
+	system->GetSettings()->SetValue("Simulation Scale",  0.002);
 	system->GetSettings()->SetValue("Rest Density",  1000);
 	system->GetSettings()->SetValue("Rest Pressure", 0);
 	system->GetSettings()->SetValue("Ideal Gas Constant",  1.5);
@@ -205,7 +205,7 @@ void testKernel();
 int main(int argc, char *argv[])
 {
 	SimLib::SimCudaHelper* simCudaHelper = new SimLib::SimCudaHelper();
-	simCudaHelper->Initialize(1);
+	simCudaHelper->Initialize(0);
 
 	//force the GPU to wake up
 	cudaEvent_t wakeGPU;
