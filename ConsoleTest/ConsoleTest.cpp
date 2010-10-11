@@ -114,8 +114,8 @@ void testFluidSim()
 	//system->SetPrintTiming(true);
 	system->SetScene(6);
 
-	//GPUTimer *totalTimer = new GPUTimer();
-	//totalTimer->start();
+	GPUTimer *totalTimer = new GPUTimer();
+	totalTimer->start();
 
 	system->PrintMemoryUse();
 
@@ -124,16 +124,16 @@ void testFluidSim()
 	{
 		system->Simulate(true, true);
 	}
-	//CUDA_SAFE_CALL(cudaThreadSynchronize());
+	CUDA_SAFE_CALL(cudaThreadSynchronize());
 
 	
-	//totalTimer->stop();
-	//double totalTime = totalTimer->elapsed_ms();
-	//cout << "Total ms: " << totalTime << "\n";
-	//cout << "Avg ms/frame: " << totalTime/ITERATIONS << "\n";
-	//cout << "Avg fps: " << 1000.0/(totalTime/ITERATIONS) << "\n";
+	totalTimer->stop();
+	double totalTime = totalTimer->elapsed_ms();
+	cout << "Total ms: " << totalTime << "\n";
+	cout << "Avg ms/frame: " << totalTime/ITERATIONS << "\n";
+	cout << "Avg fps: " << 1000.0/(totalTime/ITERATIONS) << "\n";
 
-	//pause();
+	pause();
 }
 
 void testPerformanceScaling()
