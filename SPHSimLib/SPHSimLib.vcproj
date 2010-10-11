@@ -42,7 +42,7 @@
 				Arch2="20"
 				Arch3="0"
 				MaxRegCount="100"
-				ExtraNvccOptions="-ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
+				ExtraNvccOptions="-m 32 -ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
 				Optimization="0"
 				Runtime="3"
 			/>
@@ -192,7 +192,7 @@
 				Arch2="20"
 				Arch3="0"
 				MaxRegCount="100"
-				ExtraNvccOptions="-ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
+				ExtraNvccOptions="-m 32 -ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
 				Optimization="3"
 				Runtime="2"
 			/>
@@ -345,7 +345,7 @@
 				Arch3="0"
 				Emulation="true"
 				MaxRegCount="100"
-				ExtraNvccOptions="-ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
+				ExtraNvccOptions="-m 32 -ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
 				Optimization="0"
 				Runtime="3"
 			/>
