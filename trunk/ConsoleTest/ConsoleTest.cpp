@@ -208,8 +208,8 @@ int main(int argc, char *argv[])
 	simCudaHelper->Initialize(0);
 
 	//force the GPU to wake up
-	cudaEvent_t wakeGPU;
-	cutilSafeCall( cudaEventCreate( &wakeGPU) );
+	//cudaEvent_t wakeGPU;
+	//cutilSafeCall( cudaEventCreate( &wakeGPU) );
 	//Sleep(1000);
 
 

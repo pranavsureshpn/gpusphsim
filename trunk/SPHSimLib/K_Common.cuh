@@ -1,12 +1,13 @@
 #ifndef FLUID_SYSTEM_KERNELS_CUH
 #define FLUID_SYSTEM_KERNELS_CUH
 
-#include "cutil_math.h"
+#include <cutil_math.h>
 
 #include "Config.h"
 
 
 #ifdef SPHSIMLIB_VEC_TYPE_FLOAT4
+
 typedef float4 float_vec;
 
 static __inline__ __host__ __device__ float_vec make_vec(float_vec v)
@@ -97,26 +98,22 @@ static __inline__ __host__ __device__ matrix3 make_matrix3(float_vec r1, float_v
 
 #if defined(__cplusplus) && defined(__CUDACC__)
 
-#include "cuda_texture_types.h"
-#include "host_defines.h"
-#include "texture_types.h"
-#include "vector_functions.h"
-#include "vector_types.h"
+#include <device_functions.h>
 
-static __inline__ __device__ matrix3 tex1DfetchMatrix3(texture<float_vec, 1, cudaReadModeElementType> t, int x)
+static __inline__ __device__ matrix3 tex1DfetchMatrix3(texture<float4, 1, cudaReadModeElementType> t, int x)
 {
-	float_vec r1 = __ftexfetchi(t, make_int4(x*3, 0, 0, 0));
-	float_vec r2 = __ftexfetchi(t, make_int4(x*3+1, 0, 0, 0));
-	float_vec r3 = __ftexfetchi(t, make_int4(x*3+2, 0, 0, 0));
+	float4 r1 = tex1Dfetch(t, x*3);
+	float4 r2 = tex1Dfetch(t, x*3+1);
+	float4 r3 = tex1Dfetch(t, x*3+2);
 
 	return make_matrix3(r1,r2,r3);
 }
 
 // static __inline__ __device__ matrix3 tex1Dfetch(texture<matrix3, 1, cudaReadModeElementType> t, int x)
 // {
-// 	float_vec r1 = __ftexfetchi(t, make_int4(x*3, 0, 0, 0));
-// 	float_vec r2 = __ftexfetchi(t, make_int4(x*3+1, 0, 0, 0));
-// 	float_vec r3 = __ftexfetchi(t, make_int4(x*3+2, 0, 0, 0));
+// 	float_vec r1 = tex1Dfetch(t, x*3);
+// 	float_vec r2 = tex1Dfetch(t, x*3+1);
+// 	float_vec r3 = tex1Dfetch(t, x*3+2);
 // 
 // 	return make_matrix3(r1,r2,r3);
 // }

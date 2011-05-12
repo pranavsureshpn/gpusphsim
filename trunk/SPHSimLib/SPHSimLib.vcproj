@@ -17,7 +17,7 @@
 	</Platforms>
 	<ToolFiles>
 		<ToolFile
-			RelativePath="..\Cuda30.rules"
+			RelativePath="..\NvCudaRuntimeApi.rules"
 		/>
 	</ToolFiles>
 	<Configurations>
@@ -35,14 +35,13 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="CUDA Build Rule"
-				Include="$(DXSDK_DIR)\include;$(NVSDKCOMPUTE_ROOT)\c\common\inc;$(CUDA_INC_PATH)"
-				Debug="true"
+				Name="Cudart Build Rule"
+				Include="$(DXSDK_DIR)\include;$(NVSDKCOMPUTE_ROOT)\c\common\inc;$(CUDA_PATH)\include"
 				Arch1="13"
 				Arch2="20"
 				Arch3="0"
-				MaxRegCount="100"
-				ExtraNvccOptions="-m 32 -ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
+				MaxRegCount="63"
+				ExtraNvccOptions="-ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
 				Optimization="0"
 				Runtime="3"
 			/>
@@ -59,7 +58,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP4"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(DXSDK_DIR)\include&quot;;&quot;$(NVSDKCOMPUTE_ROOT)\c\common\inc&quot;;&quot;$(CUDA_INC_PATH)&quot;"
+				AdditionalIncludeDirectories="&quot;$(DXSDK_DIR)\include&quot;;&quot;$(NVSDKCOMPUTE_ROOT)\c\common\inc&quot;;&quot;$(CUDA_PATH)\include&quot;"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -109,13 +108,13 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="CUDA Build Rule"
-				Include="$(DXSDK_DIR)\include;$(NVSDKCOMPUTE_ROOT)\c\common\inc;$(CUDA_INC_PATH)"
-				Debug="true"
+				Name="Cudart Build Rule"
+				Include="$(DXSDK_DIR)\include;$(NVSDKCOMPUTE_ROOT)\c\common\inc;$(CUDA_PATH)\include"
 				Arch1="13"
 				Arch2="20"
 				Arch3="0"
-				MaxRegCount="100"
+				TargetMachinePlatform="1"
+				MaxRegCount="63"
 				PtxAsOptionV="false"
 				ExtraNvccOptions="-ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
 				Optimization="0"
@@ -135,7 +134,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP4"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(DXSDK_DIR)\include&quot;;&quot;$(NVSDKCOMPUTE_ROOT)\c\common\inc&quot;;&quot;$(CUDA_INC_PATH)&quot;"
+				AdditionalIncludeDirectories="&quot;$(DXSDK_DIR)\include&quot;;&quot;$(NVSDKCOMPUTE_ROOT)\c\common\inc&quot;;&quot;$(CUDA_PATH)\include&quot;"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -186,13 +185,13 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="CUDA Build Rule"
-				Include="$(DXSDK_DIR)\include;$(NVSDKCOMPUTE_ROOT)\c\common\inc;$(CUDA_INC_PATH)"
+				Name="Cudart Build Rule"
+				Include="$(DXSDK_DIR)\include;$(NVSDKCOMPUTE_ROOT)\c\common\inc;$(CUDA_PATH)\include"
 				Arch1="13"
 				Arch2="20"
 				Arch3="0"
-				MaxRegCount="100"
-				ExtraNvccOptions="-m 32 -ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
+				MaxRegCount="63"
+				ExtraNvccOptions="-ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
 				Optimization="3"
 				Runtime="2"
 			/>
@@ -210,7 +209,7 @@
 				AdditionalOptions="/MP4"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;$(DXSDK_DIR)\include&quot;;&quot;$(NVSDKCOMPUTE_ROOT)\c\common\inc&quot;;&quot;$(CUDA_INC_PATH)&quot;"
+				AdditionalIncludeDirectories="&quot;$(DXSDK_DIR)\include&quot;;&quot;$(NVSDKCOMPUTE_ROOT)\c\common\inc&quot;;&quot;$(CUDA_PATH)\include&quot;"
 				MinimalRebuild="false"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -261,14 +260,15 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="CUDA Build Rule"
-				Include="$(DXSDK_DIR)\include;$(NVSDKCOMPUTE_ROOT)\c\common\inc;$(CUDA_INC_PATH)"
+				Name="Cudart Build Rule"
+				Include="$(DXSDK_DIR)\include;$(NVSDKCOMPUTE_ROOT)\c\common\inc;$(CUDA_PATH)\include"
 				Arch1="13"
 				Arch2="20"
 				Arch3="0"
-				FastMath="true"
-				MaxRegCount="100"
+				TargetMachinePlatform="1"
+				MaxRegCount="63"
 				ExtraNvccOptions="-ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
+				FastMath="true"
 				Optimization="3"
 				Runtime="2"
 			/>
@@ -287,7 +287,7 @@
 				AdditionalOptions="/MP4"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;$(DXSDK_DIR)\include&quot;;&quot;$(NVSDKCOMPUTE_ROOT)\c\common\inc&quot;;&quot;$(CUDA_INC_PATH)&quot;"
+				AdditionalIncludeDirectories="&quot;$(DXSDK_DIR)\include&quot;;&quot;$(NVSDKCOMPUTE_ROOT)\c\common\inc&quot;;&quot;$(CUDA_PATH)\include&quot;"
 				MinimalRebuild="false"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -337,15 +337,13 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="CUDA Build Rule"
-				Include="$(DXSDK_DIR)\include;$(NVSDKCOMPUTE_ROOT)\c\common\inc;$(CUDA_INC_PATH)"
-				Debug="true"
+				Name="Cudart Build Rule"
+				Include="$(DXSDK_DIR)\include;$(NVSDKCOMPUTE_ROOT)\c\common\inc;$(CUDA_PATH)\include"
 				Arch1="13"
 				Arch2="20"
 				Arch3="0"
-				Emulation="true"
-				MaxRegCount="100"
-				ExtraNvccOptions="-m 32 -ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
+				MaxRegCount="63"
+				ExtraNvccOptions="-ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
 				Optimization="0"
 				Runtime="3"
 			/>
@@ -362,7 +360,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP4"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(DXSDK_DIR)\include&quot;;&quot;$(NVSDKCOMPUTE_ROOT)\c\common\inc&quot;;&quot;$(CUDA_INC_PATH)&quot;"
+				AdditionalIncludeDirectories="&quot;$(DXSDK_DIR)\include&quot;;&quot;$(NVSDKCOMPUTE_ROOT)\c\common\inc&quot;;&quot;$(CUDA_PATH)\include&quot;"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -412,14 +410,13 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="CUDA Build Rule"
-				Include="$(DXSDK_DIR)\include;$(NVSDKCOMPUTE_ROOT)\c\common\inc;$(CUDA_INC_PATH)"
-				Debug="true"
+				Name="Cudart Build Rule"
+				Include="$(DXSDK_DIR)\include;$(NVSDKCOMPUTE_ROOT)\c\common\inc;$(CUDA_PATH)\include"
 				Arch1="13"
 				Arch2="20"
 				Arch3="0"
-				Emulation="true"
-				MaxRegCount="100"
+				TargetMachinePlatform="1"
+				MaxRegCount="63"
 				ExtraNvccOptions="-ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
 				Optimization="0"
 				Runtime="3"
@@ -438,7 +435,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP4"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(DXSDK_DIR)\include&quot;;&quot;$(NVSDKCOMPUTE_ROOT)\c\common\inc&quot;;&quot;$(CUDA_INC_PATH)&quot;"
+				AdditionalIncludeDirectories="&quot;$(DXSDK_DIR)\include&quot;;&quot;$(NVSDKCOMPUTE_ROOT)\c\common\inc&quot;;&quot;$(CUDA_PATH)\include&quot;"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -541,7 +538,7 @@
 					ExcludedFromBuild="true"
 					>
 					<Tool
-						Name="CUDA Build Rule"
+						Name="Cudart Build Rule"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -549,7 +546,7 @@
 					ExcludedFromBuild="true"
 					>
 					<Tool
-						Name="CUDA Build Rule"
+						Name="Cudart Build Rule"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -557,7 +554,7 @@
 					ExcludedFromBuild="true"
 					>
 					<Tool
-						Name="CUDA Build Rule"
+						Name="Cudart Build Rule"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -565,7 +562,7 @@
 					ExcludedFromBuild="true"
 					>
 					<Tool
-						Name="CUDA Build Rule"
+						Name="Cudart Build Rule"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -573,7 +570,7 @@
 					ExcludedFromBuild="true"
 					>
 					<Tool
-						Name="CUDA Build Rule"
+						Name="Cudart Build Rule"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -581,7 +578,7 @@
 					ExcludedFromBuild="true"
 					>
 					<Tool
-						Name="CUDA Build Rule"
+						Name="Cudart Build Rule"
 					/>
 				</FileConfiguration>
 			</File>
@@ -616,16 +613,15 @@
 					Name="Release|Win32"
 					>
 					<Tool
-						Name="CUDA Build Rule"
+						Name="Cudart Build Rule"
 						PtxAsOptionV="true"
-						CInterleavedPTX="false"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release|x64"
 					>
 					<Tool
-						Name="CUDA Build Rule"
+						Name="Cudart Build Rule"
 						PtxAsOptionV="true"
 					/>
 				</FileConfiguration>
@@ -645,7 +641,7 @@
 						ExcludedFromBuild="true"
 						>
 						<Tool
-							Name="CUDA Build Rule"
+							Name="Cudart Build Rule"
 						/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -653,7 +649,7 @@
 						ExcludedFromBuild="true"
 						>
 						<Tool
-							Name="CUDA Build Rule"
+							Name="Cudart Build Rule"
 						/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -661,7 +657,7 @@
 						ExcludedFromBuild="true"
 						>
 						<Tool
-							Name="CUDA Build Rule"
+							Name="Cudart Build Rule"
 						/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -669,7 +665,7 @@
 						ExcludedFromBuild="true"
 						>
 						<Tool
-							Name="CUDA Build Rule"
+							Name="Cudart Build Rule"
 						/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -677,7 +673,7 @@
 						ExcludedFromBuild="true"
 						>
 						<Tool
-							Name="CUDA Build Rule"
+							Name="Cudart Build Rule"
 						/>
 					</FileConfiguration>
 					<FileConfiguration
@@ -685,7 +681,7 @@
 						ExcludedFromBuild="true"
 						>
 						<Tool
-							Name="CUDA Build Rule"
+							Name="Cudart Build Rule"
 						/>
 					</FileConfiguration>
 				</File>
@@ -696,7 +692,7 @@
 						Name="Debug|Win32"
 						>
 						<Tool
-							Name="CUDA Build Rule"
+							Name="Cudart Build Rule"
 							AddedDependencies="K_ParticleSimDEM.cu"
 						/>
 					</FileConfiguration>
@@ -705,7 +701,7 @@
 						ExcludedFromBuild="true"
 						>
 						<Tool
-							Name="CUDA Build Rule"
+							Name="Cudart Build Rule"
 							AddedDependencies="K_ParticleSimDEM.cu"
 						/>
 					</FileConfiguration>
@@ -713,7 +709,7 @@
 						Name="Release|Win32"
 						>
 						<Tool
-							Name="CUDA Build Rule"
+							Name="Cudart Build Rule"
 							AddedDependencies="K_ParticleSimDEM.cu"
 						/>
 					</FileConfiguration>
@@ -722,7 +718,7 @@
 						ExcludedFromBuild="true"
 						>
 						<Tool
-							Name="CUDA Build Rule"
+							Name="Cudart Build Rule"
 							AddedDependencies="K_ParticleSimDEM.cu"
 						/>
 					</FileConfiguration>
@@ -730,7 +726,7 @@
 						Name="EmuDebug|Win32"
 						>
 						<Tool
-							Name="CUDA Build Rule"
+							Name="Cudart Build Rule"
 							AddedDependencies="K_ParticleSimDEM.cu"
 						/>
 					</FileConfiguration>
@@ -738,7 +734,7 @@
 						Name="EmuDebug|x64"
 						>
 						<Tool
-							Name="CUDA Build Rule"
+							Name="Cudart Build Rule"
 							AddedDependencies="K_ParticleSimDEM.cu"
 						/>
 					</FileConfiguration>
@@ -782,7 +778,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -790,7 +786,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -798,7 +794,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -806,7 +802,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -814,7 +810,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -822,7 +818,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -890,7 +886,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -898,7 +894,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -906,7 +902,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -914,7 +910,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -922,7 +918,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -930,7 +926,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -942,7 +938,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -950,7 +946,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -958,7 +954,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -966,7 +962,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -974,7 +970,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -982,7 +978,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -994,7 +990,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1002,7 +998,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1010,7 +1006,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1018,7 +1014,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1026,7 +1022,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1034,7 +1030,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1062,7 +1058,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1070,7 +1066,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1078,7 +1074,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1086,7 +1082,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1094,7 +1090,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1102,7 +1098,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1114,7 +1110,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1122,7 +1118,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1130,7 +1126,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1138,7 +1134,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1146,7 +1142,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1154,7 +1150,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1166,7 +1162,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1174,7 +1170,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1182,7 +1178,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1190,7 +1186,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1198,7 +1194,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1206,7 +1202,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1218,7 +1214,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1226,7 +1222,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1234,7 +1230,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1242,7 +1238,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1250,7 +1246,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1258,7 +1254,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1269,54 +1265,54 @@
 							Name="Debug|Win32"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_UniformGrid_Hash.cu;K_UniformGrid_NeighborList.cu;K_UniformGrid_Update.cu;K_UniformGrid_Utils.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Debug|x64"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_UniformGrid_Hash.cu;K_UniformGrid_NeighborList.cu;K_UniformGrid_Update.cu;K_UniformGrid_Utils.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release|Win32"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_UniformGrid_Hash.cu;K_UniformGrid_NeighborList.cu;K_UniformGrid_Update.cu;K_UniformGrid_Utils.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release|x64"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_UniformGrid_Hash.cu;K_UniformGrid_NeighborList.cu;K_UniformGrid_Update.cu;K_UniformGrid_Utils.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="EmuDebug|Win32"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_UniformGrid_Hash.cu;K_UniformGrid_NeighborList.cu;K_UniformGrid_Update.cu;K_UniformGrid_Utils.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="EmuDebug|x64"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_UniformGrid_Hash.cu;K_UniformGrid_NeighborList.cu;K_UniformGrid_Update.cu;K_UniformGrid_Utils.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1340,7 +1336,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 								AddedDependencies=""
 							/>
 						</FileConfiguration>
@@ -1349,7 +1345,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 								AddedDependencies=""
 							/>
 						</FileConfiguration>
@@ -1358,7 +1354,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 								AddedDependencies=""
 							/>
 						</FileConfiguration>
@@ -1367,7 +1363,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 								AddedDependencies=""
 							/>
 						</FileConfiguration>
@@ -1376,7 +1372,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 								AddedDependencies=""
 							/>
 						</FileConfiguration>
@@ -1385,7 +1381,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 								AddedDependencies=""
 							/>
 						</FileConfiguration>
@@ -1398,7 +1394,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1406,7 +1402,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1414,7 +1410,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1422,7 +1418,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1430,7 +1426,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1438,7 +1434,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1450,7 +1446,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1458,7 +1454,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1466,7 +1462,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1474,7 +1470,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1482,7 +1478,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1490,7 +1486,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1502,7 +1498,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1510,7 +1506,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1518,7 +1514,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1526,7 +1522,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1534,7 +1530,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1542,7 +1538,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1553,54 +1549,54 @@
 							Name="Debug|Win32"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_SimpleSPH.cu;K_SimpleSPH_Step1.cu;K_SimpleSPH_Step2.cu;K_SimpleSPH_Integrate.cu;K_Boundaries_Terrain.cu;K_Boundaries_Walls.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Debug|x64"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_SimpleSPH.cu;K_SimpleSPH_Step1.cu;K_SimpleSPH_Step2.cu;K_SimpleSPH_Integrate.cu;K_Boundaries_Terrain.cu;K_Boundaries_Walls.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release|Win32"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_SimpleSPH.cu;K_SimpleSPH_Step1.cu;K_SimpleSPH_Step2.cu;K_SimpleSPH_Integrate.cu;K_Boundaries_Terrain.cu;K_Boundaries_Walls.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release|x64"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_SimpleSPH.cu;K_SimpleSPH_Step1.cu;K_SimpleSPH_Step2.cu;K_SimpleSPH_Integrate.cu;K_Boundaries_Terrain.cu;K_Boundaries_Walls.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="EmuDebug|Win32"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_SimpleSPH.cu;K_SimpleSPH_Step1.cu;K_SimpleSPH_Step2.cu;K_SimpleSPH_Integrate.cu;K_Boundaries_Terrain.cu;K_Boundaries_Walls.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="EmuDebug|x64"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_SimpleSPH.cu;K_SimpleSPH_Step1.cu;K_SimpleSPH_Step2.cu;K_SimpleSPH_Integrate.cu;K_Boundaries_Terrain.cu;K_Boundaries_Walls.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1662,7 +1658,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1670,7 +1666,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1678,7 +1674,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1686,7 +1682,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1694,7 +1690,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1702,7 +1698,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1718,7 +1714,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1726,7 +1722,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1734,7 +1730,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1742,7 +1738,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1750,7 +1746,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1758,7 +1754,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1770,7 +1766,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1778,7 +1774,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1786,7 +1782,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1794,7 +1790,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1802,7 +1798,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1810,7 +1806,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1822,7 +1818,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1830,7 +1826,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1838,7 +1834,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1846,7 +1842,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1854,7 +1850,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1862,7 +1858,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1874,7 +1870,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1882,7 +1878,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1890,7 +1886,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1898,7 +1894,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1906,7 +1902,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1914,7 +1910,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1926,7 +1922,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1934,7 +1930,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1942,7 +1938,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1950,7 +1946,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1958,7 +1954,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1966,7 +1962,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -1978,7 +1974,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1986,7 +1982,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -1994,7 +1990,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2002,7 +1998,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2010,7 +2006,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2018,7 +2014,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -2030,7 +2026,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2038,7 +2034,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2046,7 +2042,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2054,7 +2050,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2062,7 +2058,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2070,7 +2066,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -2082,7 +2078,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2090,7 +2086,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2098,7 +2094,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2106,7 +2102,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2114,7 +2110,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2122,7 +2118,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -2134,7 +2130,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2142,7 +2138,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2150,7 +2146,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2158,7 +2154,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2166,7 +2162,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2174,7 +2170,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -2190,7 +2186,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2198,7 +2194,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2206,7 +2202,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2214,7 +2210,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2222,7 +2218,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2230,7 +2226,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -2242,7 +2238,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2250,7 +2246,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2258,7 +2254,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2266,7 +2262,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2274,7 +2270,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2282,7 +2278,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -2294,7 +2290,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2302,7 +2298,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2310,7 +2306,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2318,7 +2314,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2326,7 +2322,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2334,7 +2330,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -2346,7 +2342,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2354,7 +2350,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2362,7 +2358,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2370,7 +2366,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2378,7 +2374,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2386,7 +2382,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -2398,7 +2394,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2406,7 +2402,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2414,7 +2410,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2422,7 +2418,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2430,7 +2426,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
@@ -2438,7 +2434,7 @@
 							ExcludedFromBuild="true"
 							>
 							<Tool
-								Name="CUDA Build Rule"
+								Name="Cudart Build Rule"
 							/>
 						</FileConfiguration>
 					</File>
@@ -2449,56 +2445,54 @@
 							Name="Debug|Win32"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_SnowSPH.cu;K_SnowSPH_Step1.cu;K_SnowSPH_Step2.cu;K_SnowSPH_Step3.cu;K_SnowSPH_Integrate.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Debug|x64"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_SnowSPH.cu;K_SnowSPH_Step1.cu;K_SnowSPH_Step2.cu;K_SnowSPH_Step3.cu;K_SnowSPH_Integrate.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release|Win32"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
-								CInterleavedPTX="false"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_SnowSPH.cu;K_SnowSPH_Step1.cu;K_SnowSPH_Step2.cu;K_SnowSPH_Step3.cu;K_SnowSPH_Integrate.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="Release|x64"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
-								CInterleavedPTX="false"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_*.cu;K_SnowSPH.cu;K_SnowSPH_Step1.cu;K_SnowSPH_Step2.cu;K_SnowSPH_Step3.cu;K_SnowSPH_Integrate.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="EmuDebug|Win32"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_SnowSPH.cu;K_SnowSPH_Step1.cu;K_SnowSPH_Step2.cu;K_SnowSPH_Step3.cu;K_SnowSPH_Integrate.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 						<FileConfiguration
 							Name="EmuDebug|x64"
 							>
 							<Tool
-								Name="CUDA Build Rule"
-								PtxAsOptionV="true"
+								Name="Cudart Build Rule"
 								AddedDependencies="K_SnowSPH.cu;K_SnowSPH_Step1.cu;K_SnowSPH_Step2.cu;K_SnowSPH_Step3.cu;K_SnowSPH_Integrate.cu"
+								PtxAsOptionV="true"
 							/>
 						</FileConfiguration>
 					</File>
