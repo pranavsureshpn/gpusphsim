@@ -2,8 +2,8 @@
 #define __SimCudaAllocator_h__
 
 #include <map>
-#include "cutil.h"
-#include "cutil_math.h"
+#include <cutil.h>
+#include <cutil_math.h>
 
 namespace SimLib
 {

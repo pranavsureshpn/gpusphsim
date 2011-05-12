@@ -1,6 +1,8 @@
 #ifndef __SimCudaHelper_h__
 #define __SimCudaHelper_h__
 
+#if !defined(__CUDACC__)
+
 #include "Config.h" 
 //#define SPHSIMLIB_3D_SUPPORT
 
@@ -17,10 +19,16 @@
 
 #ifdef SPHSIMLIB_3D_SUPPORT
 #ifdef _WIN32
-//#include <d3dx9.h>
-#include <D3D9.h>
+
+#include <d3dx9.h>
+
+// includes, cuda
+#include <cuda.h>
+#include <builtin_types.h>
+#include <cuda_runtime_api.h>
 #include <cuda_d3d9_interop.h>
-#include <cudad3d9.h>
+
+
 #endif
 #endif
 
@@ -67,5 +75,7 @@ namespace SimLib
 	};
 }
 
+
+#endif
 
 #endif

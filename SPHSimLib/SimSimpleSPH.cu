@@ -14,24 +14,25 @@
 
 #include "timer.h"
 
-// Grid textures and constants
-#ifdef USE_TEX
-texture<uint, 1, cudaReadModeElementType> neighbors_tex;
-texture<uint, 1, cudaReadModeElementType> cell_indexes_start_tex;
-texture<uint, 1, cudaReadModeElementType> cell_indexes_end_tex; 
- 
-// Fluid textures and constants
-texture<float_vec, 1, cudaReadModeElementType> position_tex;
-texture<float_vec, 1, cudaReadModeElementType> velocity_tex;
-texture<float_vec, 1, cudaReadModeElementType> veleval_tex;
-texture<float, 1, cudaReadModeElementType> pressure_tex;
+namespace SimLib { namespace Sim { namespace SimpleSPH { 
 
-texture<float_vec, 1, cudaReadModeElementType> sph_force_tex;
-texture<float_vec, 1, cudaReadModeElementType> color_tex;
-texture<float, 1, cudaReadModeElementType> density_tex;
+	// Grid textures and constants
+#ifdef USE_TEX
+	texture<uint, 1, cudaReadModeElementType> neighbors_tex;
+	texture<uint, 1, cudaReadModeElementType> cell_indexes_start_tex;
+	texture<uint, 1, cudaReadModeElementType> cell_indexes_end_tex; 
+
+	// Fluid textures and constants
+	texture<float_vec, 1, cudaReadModeElementType> position_tex;
+	texture<float_vec, 1, cudaReadModeElementType> velocity_tex;
+	texture<float_vec, 1, cudaReadModeElementType> veleval_tex;
+	texture<float, 1, cudaReadModeElementType> pressure_tex;
+
+	texture<float_vec, 1, cudaReadModeElementType> sph_force_tex;
+	texture<float_vec, 1, cudaReadModeElementType> color_tex;
+	texture<float, 1, cudaReadModeElementType> density_tex;
 #endif 
 
-namespace SimLib { namespace Sim { namespace SimpleSPH { 
 
 __device__ __constant__	GridParams		cGridParams;
 __device__ __constant__	SimpleSPHFluidParams	cFluidParams;
