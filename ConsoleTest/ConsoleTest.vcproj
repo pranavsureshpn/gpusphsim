@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="ConsoleTest"
 	ProjectGUID="{110ACBCC-44F5-414E-BDA7-CB3FF9548F49}"
 	RootNamespace="ConsoleTest"
@@ -232,7 +232,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="cudart.lib cutil32.lib cudpp32.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;$(NVSDKCOMPUTE_ROOT)\c\common\lib&quot;;&quot;$(CUDA_PATH)\lib\Win32&quot;"
+				AdditionalLibraryDirectories="&quot;$(NVSDKCOMPUTE_ROOT)\c\common\lib\win32&quot;;&quot;$(CUDA_PATH)\lib\Win32&quot;"
 				IgnoreDefaultLibraryNames="LIBCMT"
 				GenerateDebugInformation="true"
 				SubSystem="1"
