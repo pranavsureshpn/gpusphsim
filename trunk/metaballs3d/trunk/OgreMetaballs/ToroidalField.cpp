@@ -5,7 +5,7 @@
 //-----------------------------------
 
 ToroidalField::ToroidalField(const Vector3& center, float radius, float sectionRadius)
-: m_center(center), m_sectionRadius(sectionRadius), m_radius(radius)
+: m_center(center), m_sectionRadius(sectionRadius), m_radius(radius),m_boundingBox(Vector3::ZERO, Vector3::ZERO)
 {
 }
 

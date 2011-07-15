@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="OgreMetaballs"
 	ProjectGUID="{20D84336-1D25-4693-891B-2D392AF98BA3}"
 	RootNamespace="OgreMetaballs"
@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(OGRE_HOME)\samples\include;$(OGRE_HOME)\include"
+				AdditionalIncludeDirectories="&quot;$(OGRE_HOME)\samples\include&quot;;&quot;$(OGRE_HOME)\include&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;;&quot;$(BOOST)&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -60,7 +60,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="OgreMain_d.lib OIS_d.lib"
-				AdditionalLibraryDirectories="$(OGRE_HOME)\lib"
+				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\$(ConfigurationName)&quot;;&quot;$(OGRE_HOME)\lib\$(ConfigurationName)\opt&quot;;&quot;$(BOOST)\stage\lib&quot;"
 				GenerateDebugInformation="true"
 				TargetMachine="1"
 			/>
@@ -115,7 +115,7 @@
 				InlineFunctionExpansion="2"
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="$(OGRE_HOME)\samples\include;$(OGRE_HOME)\include"
+				AdditionalIncludeDirectories="&quot;$(OGRE_HOME)\samples\include&quot;;&quot;$(OGRE_HOME)\include&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;;&quot;$(BOOST)&quot;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -135,7 +135,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="OgreMain.lib OIS.lib"
-				AdditionalLibraryDirectories="$(OGRE_HOME)\lib"
+				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\$(ConfigurationName)&quot;;&quot;$(OGRE_HOME)\lib\$(ConfigurationName)\opt&quot;;&quot;$(BOOST)\stage\lib&quot;"
 				GenerateDebugInformation="true"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
@@ -189,6 +189,14 @@
 				</File>
 				<File
 					RelativePath=".\MetaballsAbstractScene.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\MyTestScene.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\MyTestScene.h"
 					>
 				</File>
 				<File

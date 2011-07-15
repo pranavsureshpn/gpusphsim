@@ -7,7 +7,7 @@
 //-----------------------------------
 
 SphericalField::SphericalField(const Vector3& center, float radius)
-: m_center(center), m_radiusSquared(radius * radius), m_radius(radius)
+: m_center(center), m_radiusSquared(radius * radius), m_radius(radius),m_boundingBox(Vector3::ZERO, Vector3::ZERO)
 {
 }
 
