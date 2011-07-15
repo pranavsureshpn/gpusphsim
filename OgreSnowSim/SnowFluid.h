@@ -76,12 +76,12 @@ namespace SnowSim
 		int mNumParticles;
 		int mVolumeSize;
 
-		Ogre::Entity* sphereEntity;
-		Ogre::SceneNode* sphereNode;
+//		Ogre::Entity* sphereEntity;
+//		Ogre::SceneNode* sphereNode;
 
-		Ogre::Vector3 spherePosition;
-		Ogre::Vector3 sphereVelocity;
-		Ogre::Vector3 sphereAccel;
+//		Ogre::Vector3 spherePosition;
+//		Ogre::Vector3 sphereVelocity;
+//		Ogre::Vector3 sphereAccel;
 
 
 		Ogre::ManualObject* mFluidGridObject;
