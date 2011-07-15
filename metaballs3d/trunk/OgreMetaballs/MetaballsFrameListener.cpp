@@ -7,6 +7,7 @@
 #include "PlaneScene.h"
 #include "HeartScene.h"
 #include "CascadeScene.h"
+#include "MyTestScene.h"
 
 //-----------------------------------
 // MetaballsFrameListener
@@ -20,7 +21,7 @@ MetaballsFrameListener::MetaballsFrameListener(RenderWindow* win, Camera* cam, D
 
 	m_scene = NULL;
 
-	m_nbrScene = 2;
+	m_nbrScene = 4;
 	m_currentSceneId = 0;
 
 	ResetScene(m_currentSceneId);
@@ -72,10 +73,16 @@ void MetaballsFrameListener::ResetScene(int sceneId)
 	switch (m_currentSceneId)
 	{  
 	case 0:
-		m_scene = new CascadeScene();
+		m_scene = new MyTestScene();
 		break;
 	case 1:
+		m_scene = new CascadeScene();
+		break;
+	case 2:
 		m_scene = new TorusScene();
+		break;
+	case 3:
+		m_scene = new PlaneScene();
 		break;
 	default:
 		m_scene = new CascadeScene();
