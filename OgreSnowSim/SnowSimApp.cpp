@@ -16,20 +16,25 @@ namespace SnowSim
 		, mScreenCaptureFrame(0)
 		, mScreenCapture(false)
 	{
+#ifdef  _USE_MY_GUI_ 
 		mSnowGui = new SnowGui(mSnowConfig);
+#endif
 	}
 
 	//-------------------------------------------------------------------------------------
 	SnowApplication::~SnowApplication(void)
 	{
+#ifdef  _USE_MY_GUI_ 
 		delete mSnowGui;
+#endif
 	}
 
 	void SnowApplication::setupResources(void)
 	{
 		BaseApplication::setupResources();
-
+#ifdef  _USE_MY_GUI_ 
 		mSnowGui->setupResources();
+#endif
 	}
 
 	//-------------------------------------------------------------------------------------
@@ -39,9 +44,10 @@ namespace SnowSim
 
 		mDestroyed = true;
 
+#ifdef  _USE_MY_GUI_ 
 		// Destroy GUI
 		mSnowGui->destroyScene(mGUI, mWindow, mSceneMgr);
-
+#endif
 		// Destroy fluid
 		mSnowFluid->destroyScene(mWindow, mSceneMgr);
 
@@ -96,9 +102,10 @@ namespace SnowSim
 		mSnowFluid->createScene(mWindow, mSceneMgr, mSnowTerrain, primaryLight);
 		//mCamera->lookAt(mSnowFluid->mParticlesNode->getPosition());;
 
+#ifdef  _USE_MY_GUI_ 
 		// Create GUI
 		mSnowGui->createScene(mGUI, mSceneMgr, mSnowTerrain, mSnowFluid);
-
+#endif
 		// Place camera 
 		Vector3 cameraPos =mSnowConfig->sceneSettings.cameraPosition;
 		if(mSnowConfig->sceneSettings.cameraRelativeToFluid && mSnowConfig->fluidSettings.enabled)
@@ -119,6 +126,8 @@ namespace SnowSim
 			mCamera->setFarClipDistance(0);   // enable infinite far clip distance if we can
 		}
 
+		//mMetaballApp.createScene(mSceneMgr);
+
 		return;
 	}
 
@@ -127,6 +136,8 @@ namespace SnowSim
 		BaseApplication::createFrameListener();
 
 		setupControls();
+
+		//mMetaballApp.createFrameListener(mRoot, mWindow, mCamera);
 	}
 
 	bool SnowApplication::frameStarted (const FrameEvent &evt)
