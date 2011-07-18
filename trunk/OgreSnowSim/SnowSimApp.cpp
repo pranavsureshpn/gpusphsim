@@ -126,8 +126,9 @@ namespace SnowSim
 			mCamera->setFarClipDistance(0);   // enable infinite far clip distance if we can
 		}
 
-		//mMetaballApp.createScene(mSceneMgr);
-
+		mMetaballApp.createScene(mSceneMgr);
+		mMetaballApp.createFrameListener(mRoot, mWindow, mCamera);
+		
 		return;
 	}
 
@@ -136,8 +137,6 @@ namespace SnowSim
 		BaseApplication::createFrameListener();
 
 		setupControls();
-
-		//mMetaballApp.createFrameListener(mRoot, mWindow, mCamera);
 	}
 
 	bool SnowApplication::frameStarted (const FrameEvent &evt)

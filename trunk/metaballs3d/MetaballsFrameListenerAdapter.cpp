@@ -1,0 +1,123 @@
+#include "MetaballsFrameListenerAdapter.h"
+
+#include "./trunk/OgreMetaballs/DynamicMesh.h"
+#include "./trunk/OgreMetaballs/MarchingCubesImpl.h"
+#include "./trunk/OgreMetaballs/ScalarField3D.h"
+#include "./trunk/OgreMetaballs/TorusScene.h"
+#include "./trunk/OgreMetaballs/PlaneScene.h"
+//#include "./trunk/OgreMetaballs/HeartScene.h"
+#include "./trunk/OgreMetaballs/CascadeScene.h"
+#include "./trunk/OgreMetaballs/MyTestScene.h"
+
+//-----------------------------------
+// MetaballsFrameListener
+//-----------------------------------
+
+MetaballsFrameListenerAdapter::MetaballsFrameListenerAdapter(RenderWindow* win, Camera* cam, DynamicMesh* meshBuilder) : ExampleFrameListener(win, cam)
+{
+	m_totalTime = 0;
+
+	m_meshBuilder = meshBuilder;
+
+	m_scene = NULL;
+
+	m_nbrScene = 4;
+	m_currentSceneId = 1;
+
+	ResetScene(m_currentSceneId);
+
+	//Initialize the camera coordinates
+	m_camAzimuth = 0;
+	m_camPolar = 0;
+
+	m_keyboardDelayMax = 2.0f;
+	m_keyboardDelay = 0; 
+}
+
+MetaballsFrameListenerAdapter::~MetaballsFrameListenerAdapter(void)
+{
+}
+void MetaballsFrameListenerAdapter::ResetScene(int sceneId)
+{
+	if(m_scene != NULL)
+	{
+		delete m_scene;
+	}
+
+	m_currentSceneId = sceneId % m_nbrScene;
+
+	switch (m_currentSceneId)
+	{  
+	case 0:
+		m_scene = new MyTestScene();
+		break;
+	case 1:
+		m_scene = new CascadeScene();
+		break;
+	case 2:
+		m_scene = new TorusScene();
+		break;
+	case 3:
+		m_scene = new PlaneScene();
+		break;
+	default:
+		m_scene = new CascadeScene();
+		break;
+	}
+
+	m_scene->CreateFields();
+
+	//Create the object responsible for the mesh creation
+	m_marchingCube = new MarchingCubesImpl(m_meshBuilder);
+	m_marchingCube->SetScalarField(m_scene->GetScalarField());
+	m_marchingCube->Initialize(m_scene->GetSceneSize(), m_scene->GetSpaceResolution(), 1);
+
+    m_camRadius = 140 * m_scene->GetSceneSize();
+}
+
+bool MetaballsFrameListenerAdapter::frameStarted(const FrameEvent& evt)
+{		
+	m_keyboardDelay -= evt.timeSinceLastFrame;
+
+	if(!mKeyboard->isKeyDown(OIS::KC_SPACE))
+	{
+		m_totalTime += evt.timeSinceLastFrame;
+	}
+
+	if(mKeyboard->isKeyDown(OIS::KC_T))
+	{
+		mCamera->setPolygonMode(Ogre::PM_WIREFRAME);
+	}
+	else
+	{
+		mCamera->setPolygonMode(Ogre::PM_SOLID);
+	} 
+
+	if(mKeyboard->isKeyDown(OIS::KC_ADD) && m_keyboardDelay<0)
+	{
+		ResetScene(m_currentSceneId+1);
+		m_keyboardDelay = m_keyboardDelayMax;
+	}
+	if(mKeyboard->isKeyDown(OIS::KC_MINUS) && m_keyboardDelay<0)
+	{
+		ResetScene(m_currentSceneId-1);
+		m_keyboardDelay = m_keyboardDelayMax;
+	}
+
+	if(!mKeyboard->isKeyDown(OIS::KC_MINUS) && !mKeyboard->isKeyDown(OIS::KC_ADD))
+	{
+		m_keyboardDelay = 0;
+	}
+
+	m_scene->UpdateFields(m_totalTime);
+
+	//Recreate the mesh
+	m_marchingCube->CreateMesh();
+
+	return ExampleFrameListener::frameStarted(evt);        
+}
+
+bool MetaballsFrameListenerAdapter::frameEnded(const FrameEvent& evt)
+{
+	return ExampleFrameListener::frameEnded(evt);        
+}

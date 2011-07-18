@@ -514,6 +514,14 @@
 				RelativePath="..\metaballs3d\AppAdapter.h"
 				>
 			</File>
+			<File
+				RelativePath="..\metaballs3d\MetaballsFrameListenerAdapter.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\metaballs3d\MetaballsFrameListenerAdapter.h"
+				>
+			</File>
 			<Filter
 				Name="trunk"
 				>
