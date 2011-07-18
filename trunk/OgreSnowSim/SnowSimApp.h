@@ -3,12 +3,15 @@
 
 #include "SnowTerrain.h"
 #include "SnowFluid.h"
+#ifdef  _USE_MY_GUI_ 
 #include "SnowGui.h"
-
+#endif
 #include "BaseApplication.h"
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #include "../res/resource.h"
 #endif
+
+#include "../metaballs3d/AppAdapter.h"
 
 namespace SnowSim
 {
@@ -49,7 +52,10 @@ namespace SnowSim
 
 		SnowTerrain* mSnowTerrain;
 		SnowFluid*	mSnowFluid;
+#ifdef  _USE_MY_GUI_ 
 		SnowGui*	mSnowGui;
+#endif
+
 
 		// Shadows...
 		enum ShadowMode
@@ -71,6 +77,8 @@ namespace SnowSim
 
 		bool mScreenCapture;
 		int mScreenCaptureFrame;
+
+		MetaballsAppAdapter mMetaballApp;
 	};
 
 }

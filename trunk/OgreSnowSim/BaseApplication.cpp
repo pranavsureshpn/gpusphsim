@@ -44,9 +44,11 @@ BaseApplication::BaseApplication(void)
 	mInputManager(0),
 	mMouse(0),
 	mKeyboard(0),
-	mDragLook(false),
-	mGUI(NULL),
-	mPlatform(NULL)
+	mDragLook(false)
+#ifdef  _USE_MY_GUI_ 
+	,mGUI(NULL)
+	,mPlatform(NULL)
+#endif
 {
 }
 
@@ -340,9 +342,10 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
 //-------------------------------------------------------------------------------------
 bool BaseApplication::keyPressed( const OIS::KeyEvent &arg )
 {
+#ifdef  _USE_MY_GUI_ 
 	if(mGUI != NULL)
 		MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Enum(arg.key), arg.text);
-
+#endif
 	if (mTrayMgr->isDialogVisible()) return true;   // don't process any more keys if dialog is up
 
 	if (arg.key == OIS::KC_F)   // toggle visibility of advanced frame stats
@@ -437,26 +440,31 @@ bool BaseApplication::keyPressed( const OIS::KeyEvent &arg )
 
 bool BaseApplication::keyReleased( const OIS::KeyEvent &arg )
 {
+#ifdef  _USE_MY_GUI_ 
 	if(mGUI != NULL)
 		MyGUI::InputManager::getInstance().injectKeyRelease(MyGUI::KeyCode::Enum(arg.key));
-
+#endif
 	mCameraMan->injectKeyUp(arg);
 	return true;
 }
 
 bool BaseApplication::mouseMoved( const OIS::MouseEvent &arg )
 {
+#ifdef  _USE_MY_GUI_ 
 	if(mGUI != NULL)
 		MyGUI::InputManager::getInstance().injectMouseMove(arg.state.X.abs, arg.state.Y.abs, arg.state.Z.abs);
-    if (mTrayMgr->injectMouseMove(arg)) return true;
+#endif
+	if (mTrayMgr->injectMouseMove(arg)) return true;
 	mCameraMan->injectMouseMove(arg);
 	return true;
 }
 
 bool BaseApplication::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
 {
+#ifdef  _USE_MY_GUI_ 
 	if(mGUI != NULL)
 		MyGUI::InputManager::getInstance().injectMousePress(arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
+#endif
 
     if (mTrayMgr->injectMouseDown(arg, id)) return true;
 
@@ -472,9 +480,10 @@ bool BaseApplication::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButton
 
 bool BaseApplication::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
 {
+#ifdef  _USE_MY_GUI_ 
 	if(mGUI != NULL)
 		MyGUI::InputManager::getInstance().injectMouseRelease(arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
-
+#endif
     if (mTrayMgr->injectMouseUp(arg, id)) return true;
 
 	if (mDragLook && id == OIS::MB_Left)
