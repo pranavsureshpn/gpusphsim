@@ -57,9 +57,9 @@ const ScalarField3D* TorusScene::GetScalarField() const
 	return m_finalField;
 }
 
-float TorusScene::GetSceneSize() const
+void TorusScene::SetSceneSize()
 {
-	return 6.0f;
+	m_SceneSize = 6.0f;
 }
 
 float TorusScene::GetSpaceResolution() const

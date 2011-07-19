@@ -507,19 +507,11 @@
 			Name="metaballs3d"
 			>
 			<File
-				RelativePath="..\metaballs3d\AppAdapter.cpp"
+				RelativePath="..\metaballs3d\MetaballScene.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\metaballs3d\AppAdapter.h"
-				>
-			</File>
-			<File
-				RelativePath="..\metaballs3d\MetaballsFrameListenerAdapter.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\metaballs3d\MetaballsFrameListenerAdapter.h"
+				RelativePath="..\metaballs3d\MetaballScene.h"
 				>
 			</File>
 			<Filter

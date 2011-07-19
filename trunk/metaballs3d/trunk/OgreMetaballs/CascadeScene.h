@@ -37,13 +37,13 @@ public:
 	virtual ~CascadeScene();
 
 protected:
-	virtual void CreateFields() override;
-	virtual void UpdateFields(float time) override;
+	virtual void CreateFields();
+	virtual void UpdateFields(float time);
 
-	virtual const ScalarField3D* GetScalarField() const override;
-	virtual float GetSceneSize() const override;
-	virtual float GetSpaceResolution() const override;
-
+	virtual const ScalarField3D* GetScalarField() const;
+	virtual void SetSceneSize();
+	virtual float GetSpaceResolution() const;
+	
 private:
 	AdditiveField* m_finalField;
 

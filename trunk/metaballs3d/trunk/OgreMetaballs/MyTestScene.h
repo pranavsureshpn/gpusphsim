@@ -27,7 +27,7 @@ protected:
 	virtual void UpdateFields(float time) override;
 
 	virtual const ScalarField3D* GetScalarField() const override;
-	virtual float GetSceneSize() const override;
+	virtual void SetSceneSize();
 	virtual float GetSpaceResolution() const override;
 
 	void createBalls();

@@ -167,9 +167,9 @@ const ScalarField3D* MyTestScene::GetScalarField() const
 	return m_finalField;
 }
 
-float MyTestScene::GetSceneSize() const
+void MyTestScene::SetSceneSize()
 {
-	return 4.0f;
+	m_SceneSize = 4.0f;
 }
 
 float MyTestScene::GetSpaceResolution() const

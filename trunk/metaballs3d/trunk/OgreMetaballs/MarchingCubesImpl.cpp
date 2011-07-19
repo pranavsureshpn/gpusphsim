@@ -32,7 +32,8 @@ void MarchingCubesImpl::Initialize(float samplingSpaceSize, float samplingResolu
 	//Provide a loose estimate of the number of vertex and triangles in the final mesh
 	m_meshBuilder->EstimateSize(m_nbrSamples * m_nbrSamples * m_nbrSamples);
 
-	float samplingMinPos = -m_nbrSamples * m_samplingResolution / 2;
+	//float samplingMinPos = -m_nbrSamples * m_samplingResolution / 2;
+	float samplingMinPos = 0.0f;
 
 	//Create and initialize the sampling grid
 	m_samplingGridVertices.clear();

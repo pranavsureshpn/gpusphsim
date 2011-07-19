@@ -41,9 +41,9 @@ const ScalarField3D* PlaneScene::GetScalarField() const
 	return m_finalField;
 }
 
-float PlaneScene::GetSceneSize() const
+void PlaneScene::SetSceneSize()
 {
-	return 6.0f;
+	m_SceneSize = 6.0f;
 }
 
 float PlaneScene::GetSpaceResolution() const

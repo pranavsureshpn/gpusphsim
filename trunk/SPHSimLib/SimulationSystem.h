@@ -8,6 +8,7 @@
 #include "SimCudaHelper.h"
 
 #include "SimBase.cuh"
+#include "UniformGrid.cuh"
 
 typedef unsigned int uint;
 
@@ -47,6 +48,8 @@ namespace SimLib
 		}
 		SimSettings* GetSettings() {return mParticleSim->GetSettings();}
 		float GetParticleSize();
+	
+		GridParams& GetGridParams() { return mParticleSim->GetGridParams(); }
 
 	private:
 		SimCudaAllocator* mSimCudaAllocator;
