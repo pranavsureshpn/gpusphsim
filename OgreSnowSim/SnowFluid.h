@@ -1,8 +1,7 @@
 #ifndef __SnowFluid_h_
 #define __SnowFluid_h_
 
-#include "SnowSimConfig.h"
-#include "OgreCudaHelper.h"
+
 
 #include <OgrePlatform.h>
 #include <OgreCamera.h>
@@ -27,6 +26,8 @@
 #include "OgreTerrainMaterialGeneratorA.h"
 #include "OgreTerrainPaging.h"
 
+#include "SnowSimConfig.h"
+#include "OgreCudaHelper.h"
 #include "SnowTerrain.h"
 #include "OgreCudaHelper.h"
 #include "OgreSimBuffer.h"

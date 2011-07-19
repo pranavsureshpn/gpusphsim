@@ -13,13 +13,15 @@ namespace SnowSim
 	class OgreSimRenderable :  public Ogre::SimpleRenderable
 	{
 	public:
-		OgreSimRenderable(OgreCudaHelper* ogreCudaHelper, uint numParticles);
+		OgreSimRenderable(OgreCudaHelper* ogreCudaHelper, ::uint numParticles);
 		~OgreSimRenderable();
 
-		void Resize(uint numParticles);
+		void Resize(::uint numParticles);
 
 		OgreSimBuffer* GetCudaBufferPosition();
 		OgreSimBuffer* GetCudaBufferColor();
+
+		Ogre::HardwareVertexBufferSharedPtr getVBufPos() const { return mVertexBufferPosition; }
 
 	protected:
 		void createMaterial();
@@ -44,7 +46,7 @@ namespace SnowSim
 
 		bool mRegistered;
 		int mVolumeSize;
-		uint mNumParticles;
+		::uint mNumParticles;
 	};
 }
 #endif

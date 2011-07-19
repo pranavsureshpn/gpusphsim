@@ -3,7 +3,7 @@
 
 #include <assert.h>
 
-typedef unsigned int uint;
+//typedef unsigned int uint;
 
 #include <limits.h>
 

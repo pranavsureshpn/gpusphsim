@@ -2,8 +2,7 @@
 #define __OgreCudaHelper_h__
 
 
-#define SPHSIMLIB_3D_SUPPORT
-#include "SnowSimConfig.h"
+
 
 //#include <cutil_inline.h>
 //#include <cutil_gl_inline.h>
@@ -15,6 +14,8 @@
 #include "OgreD3D9RenderSystem.h"
 #include "OgreD3D9HardwareVertexBuffer.h"
 
+#define SPHSIMLIB_3D_SUPPORT
+#include "SnowSimConfig.h"
 #include "SimCudaHelper.h"
 
 namespace SnowSim

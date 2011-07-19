@@ -77,7 +77,7 @@ private:
 	bool mParams;
 
 protected:
-	virtual void Alloc(uint numParticle);
+	virtual void Alloc(::uint numParticle);
 	virtual void Free();
 	virtual void SettingChanged(std::string settingName);
 
@@ -85,7 +85,7 @@ protected:
 	SimCudaAllocator	*mSimCudaAllocator;
 	ocu::GPUTimer	*mGPUTimer;
 
-	uint			mNumParticles;
+	::uint			mNumParticles;
 
 	// Grid
 	UniformGrid		*mUniformGrid;

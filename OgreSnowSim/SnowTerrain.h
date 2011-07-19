@@ -1,8 +1,7 @@
 #ifndef __SnowTerrain_h_
 #define __SnowTerrain_h_
 
-#include "SnowSimConfig.h"
-#include "OgreCudaHelper.h"
+
 
 #include <OgreCamera.h>
 #include <OgreEntity.h>
@@ -25,8 +24,10 @@
 #include "OgreTerrainQuadTreeNode.h"
 #include "OgreTerrainMaterialGeneratorA.h"
 #include "OgreTerrainPaging.h"
-
 #include "OgreHardwareVertexBuffer.h"
+
+#include "SnowSimConfig.h"
+#include "OgreCudaHelper.h"
 
 namespace SnowSim
 {

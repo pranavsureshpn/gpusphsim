@@ -5,6 +5,8 @@
 //-----------------------------------
 
 MetaballsAbstractScene::MetaballsAbstractScene(void)
+:m_SceneSize(0.0f),
+mParticlesEntity(0)
 {
 }
 

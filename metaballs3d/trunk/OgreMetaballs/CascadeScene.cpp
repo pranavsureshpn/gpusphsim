@@ -11,7 +11,7 @@
 //-----------------------------------
 // Random
 //-----------------------------------
-const float ScaleFactor = 250.0f;
+float ScaleFactor = 250.0f;
 
 float random()
 {
