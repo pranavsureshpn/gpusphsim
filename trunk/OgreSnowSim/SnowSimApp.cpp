@@ -1,8 +1,8 @@
+#include "SnowSimApp.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-#include "SnowSimApp.h"
 
 using namespace Ogre;
 using namespace OgreBites;
@@ -132,7 +132,10 @@ namespace SnowSim
 		//mMetaballApp.createScene(mSceneMgr);
 		//mMetaballApp.createFrameListener(mRoot, mWindow, mCamera);
 		mMetaballScene->createScene(mSceneMgr, mSnowFluid->mParticlesNode);
-		mMetaballScene->createFrameListener(mRoot, mWindow, mCamera, mSnowFluid->getSimulationSystem()->GetGridParams());
+		mMetaballScene->createFrameListener(mRoot, mWindow, mCamera, 
+			mSnowFluid->getSimulationSystem()->GetGridParams(),
+			mSnowFluid->mParticlesEntity
+			);
 
 		return;
 	}

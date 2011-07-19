@@ -3,7 +3,7 @@
 
 namespace SnowSim
 {
-	OgreSimRenderable::OgreSimRenderable(OgreCudaHelper *ogreCudaHelper, uint numParticles)
+	OgreSimRenderable::OgreSimRenderable(OgreCudaHelper *ogreCudaHelper, ::uint numParticles)
 			: mOgreCudaHelper(ogreCudaHelper)
 			, mNumParticles(0)
 			, mVolumeSize(1024)
@@ -35,7 +35,7 @@ namespace SnowSim
 		//TODO: free shit
 	}
 
-	void OgreSimRenderable::Resize(uint numParticles)
+	void OgreSimRenderable::Resize(::uint numParticles)
 	{
 		if(numParticles == mNumParticles)
 			return;

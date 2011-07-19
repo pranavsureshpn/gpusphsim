@@ -7,6 +7,10 @@
 class DynamicMesh;
 class MarchingCubesImpl;
 class MetaballsAbstractScene;
+namespace SnowSim
+{
+	class OgreSimRenderable;
+}
 
 class MetaballScene : public Ogre::FrameListener
 {
@@ -19,7 +23,8 @@ public:
 		Ogre::Root *mRoot, 
 		Ogre::RenderWindow* mWindow,
 		Ogre::Camera* mCamera,
-		const GridParams& gridparam);
+		const GridParams& gridparam,
+		SnowSim::OgreSimRenderable *mParticlesEntity);
 
 private:
 	DynamicMesh* m_meshBuilder;
@@ -52,4 +57,5 @@ private:
 	int m_nbrScene;
 
 	SnowSim::Config *m_Config;
+	SnowSim::OgreSimRenderable *mParticlesEntity;
 };

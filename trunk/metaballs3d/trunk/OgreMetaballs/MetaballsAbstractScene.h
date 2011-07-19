@@ -5,7 +5,10 @@
 //-----------------------------------
 
 class ScalarField3D;
-
+namespace SnowSim
+{
+	class OgreSimRenderable;
+}
 //-----------------------------------
 // MetaballsAbstractScene
 //-----------------------------------
@@ -25,9 +28,10 @@ public:
 
 	virtual void SetSceneSize() = 0;
 	void SetSceneSize(const float size_){ m_SceneSize = size_; }
-
+	void SetParticlesEntity(SnowSim::OgreSimRenderable *particlesEntity){mParticlesEntity = particlesEntity;}
 protected:
 	float m_SceneSize;
+	SnowSim::OgreSimRenderable *mParticlesEntity;
 
 private:
 

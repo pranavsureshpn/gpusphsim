@@ -31,7 +31,7 @@ namespace SimLib
 		void RemoveExernalBuffer(SimLib::Sim::BaseBufferId id);
 
 		void Init();
-		void SetNumParticles(uint numParticles);
+		void SetNumParticles(::uint numParticles);
 		void SetFluidPosition(float3 fluidWorldPosition) ;
 		void Simulate(bool progress, bool gridWallCollisions);
 
@@ -79,7 +79,7 @@ namespace SimLib
 		// MISc
 
 		// Buffer for particles
-		uint terrainGeometryDim;
+		::uint terrainGeometryDim;
 
 		bool mCudaTiming;
 		bool mHaveTerrainData;

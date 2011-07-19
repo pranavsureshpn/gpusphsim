@@ -4,6 +4,9 @@
 #include "./trunk/OgreMetaballs/MarchingCubesImpl.h"
 #include "./trunk/OgreMetaballs/ScalarField3D.h"
 #include "./trunk/OgreMetaballs/CascadeScene.h"
+#include "./trunk/OgreMetaballs/MyTestScene.h"
+#include "../OgreSnowSim/OgreSimRenderable.h"
+#include "../OgreSnowSim/OgreSimBuffer.h"
 //-----------------------------------
 // MetaballScene
 //-----------------------------------
@@ -61,11 +64,15 @@ void MetaballScene::createScene(Ogre::SceneManager *mSceneMgr, Ogre::SceneNode *
 
 void MetaballScene::createFrameListener(
 	Ogre::Root *mRoot, Ogre::RenderWindow* mWindow, Ogre::Camera* mCamera,
-	const GridParams& gridparam)
+	const GridParams& gridparam,
+	SnowSim::OgreSimRenderable *particlesEntity)
 {
+	mParticlesEntity = particlesEntity;
+
 	//Create a new frame listener responsible for the scene updates
 	newFrameListener(mWindow, mCamera, m_meshBuilder, gridparam);
 	mRoot->addFrameListener(this);
+
 }
 void MetaballScene::newFrameListener(
 	Ogre::RenderWindow* win, Ogre::Camera* cam, DynamicMesh* meshBuilder,
@@ -78,7 +85,7 @@ void MetaballScene::newFrameListener(
 	m_scene = NULL;
 
 	m_nbrScene = 4;
-	m_currentSceneId = 1;
+	m_currentSceneId = 0;
 
 	ResetScene(gridparam);
 
@@ -103,9 +110,14 @@ void MetaballScene::ResetScene(const GridParams& gridparam)
 
 	switch (m_currentSceneId)
 	{  
-// 	case 0:
-// 		m_scene = new MyTestScene();
-// 		break;
+	case 0:
+		{
+			m_scene = new MyTestScene();
+			std::size_t bufferSizeInByte = mParticlesEntity->GetCudaBufferPosition()->GetSize();
+			std::size_t elementTypeSizeInByte = mParticlesEntity->GetCudaBufferPosition()->GetElementSize();
+			((MyTestScene*)m_scene)->setParticleNum(bufferSizeInByte/elementTypeSizeInByte);
+		}
+		break;
 	case 1:
 		m_scene = new CascadeScene();
 		break;
@@ -122,6 +134,7 @@ void MetaballScene::ResetScene(const GridParams& gridparam)
 	//m_scene->SetSceneSize(m_Config->terrainSettings.size);
 	m_scene->SetSceneSize(gridparam.grid_size.x);
 	m_scene->CreateFields();
+	m_scene->SetParticlesEntity(mParticlesEntity);
 
 	//Create the object responsible for the mesh creation
 	m_marchingCube = new MarchingCubesImpl(m_meshBuilder);

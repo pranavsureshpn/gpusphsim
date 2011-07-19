@@ -1,3 +1,4 @@
+#include "OgreCudaHelper.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -7,7 +8,7 @@
 
 #include <cuda_runtime_api.h>
 
-#include "OgreCudaHelper.h"
+
 
 using namespace Ogre;
 

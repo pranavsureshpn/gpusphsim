@@ -27,7 +27,7 @@ struct NeighborList
 {
 	int numParticles;
 	int MAX_NEIGHBORS;
-	uint* neighbors;
+	::uint* neighbors;
 	// pitch, IN ELEMENTS, NOT BYTES
 	size_t		neighbors_pitch;
 };
@@ -46,10 +46,10 @@ struct GridParams
 
 struct GridData
 {
-	uint* sort_hashes;			// particle hashes
-	uint* sort_indexes;			// particle indices
-	uint* cell_indexes_start;	// mapping between bucket hash and start index in sorted list
-	uint* cell_indexes_end;		// mapping between bucket hash and end index in sorted list
+	::uint* sort_hashes;			// particle hashes
+	::uint* sort_indexes;			// particle indices
+	::uint* cell_indexes_start;	// mapping between bucket hash and start index in sorted list
+	::uint* cell_indexes_end;		// mapping between bucket hash and end index in sorted list
 };
 
 
@@ -59,23 +59,23 @@ public:
 	UniformGrid(SimLib::SimCudaAllocator* SimCudaAllocator);
 	~UniformGrid();
 
-	void Alloc(uint numParticles, float cellWorldSize, float gridWorldSize);
+	void Alloc(::uint numParticles, float cellWorldSize, float gridWorldSize);
 	void Clear();
 	void Free()	;
 
-	float Hash(bool doTiming, float_vec* dParticlePositions, uint numParticles);
+	float Hash(bool doTiming, float_vec* dParticlePositions, ::uint numParticles);
 	float Sort(bool doTiming);
 
 	GridData GetGridData(){
 		GridData gridData;
-		gridData.cell_indexes_start = mGridCellBuffers->Get(CellIndexesStart)->GetPtr<uint>();
-		gridData.sort_hashes = mGridParticleBuffers->Get(SortHashes)->GetPtr<uint>();
-		gridData.sort_indexes = mGridParticleBuffers->Get(SortIndexes)->GetPtr<uint>();
-		gridData.cell_indexes_end = mGridCellBuffers->Get(CellIndexesStop)->GetPtr<uint>();
+		gridData.cell_indexes_start = mGridCellBuffers->Get(CellIndexesStart)->GetPtr<::uint>();
+		gridData.sort_hashes = mGridParticleBuffers->Get(SortHashes)->GetPtr<::uint>();
+		gridData.sort_indexes = mGridParticleBuffers->Get(SortIndexes)->GetPtr<::uint>();
+		gridData.cell_indexes_end = mGridCellBuffers->Get(CellIndexesStop)->GetPtr<::uint>();
 		return gridData;
 	}
 
-	uint GetNumCells(){return mNumCells;}
+	::uint GetNumCells(){return mNumCells;}
 	GridParams& GetGridParams(){return dGridParams;}
 
 private:
@@ -84,8 +84,8 @@ private:
 	SimLib::BufferManager<UniformGridBuffers> *mGridParticleBuffers;
 	SimLib::BufferManager<UniformGridBuffers> *mGridCellBuffers;
 
-	uint mNumParticles;
-	uint mNumCells;
+	::uint mNumParticles;
+	::uint mNumCells;
 
 	bool mAlloced;
 
@@ -96,7 +96,7 @@ private:
 	GridParams dGridParams;
 
 	bool mUseCUDPPSort;
-	RadixSort* mRadixSorter;
+	::RadixSort* mRadixSorter;
 	CUDPPHandle m_sortHandle;
 
 	int mSortBitsPrecision;
