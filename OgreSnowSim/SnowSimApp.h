@@ -11,7 +11,8 @@
 #include "../res/resource.h"
 #endif
 
-#include "../metaballs3d/AppAdapter.h"
+//#include "../metaballs3d/AppAdapter.h"
+#include "../metaballs3d/MetaballScene.h"
 
 namespace SnowSim
 {
@@ -78,7 +79,8 @@ namespace SnowSim
 		bool mScreenCapture;
 		int mScreenCaptureFrame;
 
-		MetaballsAppAdapter mMetaballApp;
+		//MetaballsAppAdapter mMetaballApp;
+		MetaballScene *mMetaballScene;
 	};
 
 }

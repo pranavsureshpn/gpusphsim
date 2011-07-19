@@ -11,6 +11,7 @@
 //-----------------------------------
 // Random
 //-----------------------------------
+const float ScaleFactor = 250.0f;
 
 float random()
 {
@@ -27,9 +28,11 @@ CascadeScene::CascadeScene()
 	m_lastUpdateTime = 0;
 
 	m_nbrMaxBalls = 4;
-	m_lifeTime = 3.2f;
-	m_baseRadius = 0.5f;
-	m_minRadius = 0.2f;
+	m_lifeTime = 3.2f*10.0f;
+	m_baseRadius = 0.5f*ScaleFactor*10.0f;
+	m_minRadius  = 0.2f*ScaleFactor*10.0f;
+	//m_baseRadius = 500.0f;
+	//m_minRadius = 350.0f;
 }
 
 CascadeScene::~CascadeScene()
@@ -40,7 +43,11 @@ void CascadeScene::CreateFields()
 {
 	m_finalField = new AdditiveField();
 
-	m_finalField->AddField(new PlaneField(Vector3(0,-1,0), GetSceneSize() * 0.45f - 1));
+	m_finalField->AddField(
+		new PlaneField(Vector3(0,-1,0), 
+						0.0f//GetSceneSize() * 0.45f - 1
+		)
+	);
 }
 
 void CascadeScene::UpdateFields(float time)
@@ -62,14 +69,14 @@ void CascadeScene::UpdateFields(float time)
 		CascadeMetaBall* ball = new CascadeMetaBall();
 
 		ball->Position = Vector3(
-			random() * 1.0f,
-			-1.1f,
-			random() * 1.0f);	
+			random() * 1.0f * ScaleFactor,
+			-1.1f           * ScaleFactor,
+			random() * 1.0f * ScaleFactor);	
 
 		ball->Speed = Vector3(
-			random() * 0.2f,
-			1.0f + 0.3f * random(),
-			random() * 0.2f);
+			random() * 0.2f * ScaleFactor,
+			1.0f + 0.3f * random() * ScaleFactor,
+			random() * 0.2f * ScaleFactor);
 
 		ball->Lifetime = m_lifeTime;
 
@@ -102,7 +109,7 @@ void CascadeScene::UpdateFields(float time)
 		ball->Field->SetCenter(ball->Position);
 
 		float lifeRatio = ball->Lifetime / m_lifeTime;
-		float radius = m_baseRadius *sin( 3.141 * lifeRatio);
+		float radius = m_baseRadius /**sin( 3.141 * lifeRatio)*/;
 		if(lifeRatio < 0.5f && radius < m_minRadius)
 		{
 			radius = m_minRadius;
@@ -121,13 +128,14 @@ const ScalarField3D* CascadeScene::GetScalarField() const
 	return m_finalField;
 }
 
-float CascadeScene::GetSceneSize() const
+void CascadeScene::SetSceneSize()
 {
-	return 4.0f;
+	m_SceneSize = 4.0f*ScaleFactor;
 }
 
 float CascadeScene::GetSpaceResolution() const
 {
-	return 0.09f;
+	return 0.09f*ScaleFactor;
+	//return 10.0f;
 }
 

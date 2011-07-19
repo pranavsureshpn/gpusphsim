@@ -51,6 +51,7 @@ namespace SnowSim
 		bool frameEnded (const Ogre::FrameEvent &evt);
 
 		bool keyPressed (OIS::Keyboard* keyboard, const OIS::KeyEvent &e);
+		SimLib::SimulationSystem* getSimulationSystem()const { return mParticleSystem; }
 
 		Ogre::SceneNode* mParticlesNode;
 		OgreSimRenderable *mParticlesEntity;
@@ -59,7 +60,7 @@ namespace SnowSim
 
 	private:
 		Ogre::RenderWindow* mRenderWindow;
-		void SnowFluid::setParticleMaterial(Ogre::String particleMaterial);
+		void setParticleMaterial(Ogre::String particleMaterial);
 		void configureTerrain(SnowTerrain* terrain);
 		
 		void SetScene(int scene);

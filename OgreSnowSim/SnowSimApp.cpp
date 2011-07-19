@@ -15,6 +15,7 @@ namespace SnowSim
 		: mSimulationPaused(false)
 		, mScreenCaptureFrame(0)
 		, mScreenCapture(false)
+		, mMetaballScene(NULL)
 	{
 #ifdef  _USE_MY_GUI_ 
 		mSnowGui = new SnowGui(mSnowConfig);
@@ -54,6 +55,7 @@ namespace SnowSim
 		// Destroy terrain
 		mSnowTerrain->destroyScene(mWindow, mSceneMgr);
 
+		delete mMetaballScene;
 		delete mSnowTerrain;
 		delete mSnowFluid;
 	}
@@ -67,6 +69,7 @@ namespace SnowSim
 
 		mSnowTerrain = new SnowTerrain(mSnowConfig);
 		mSnowFluid = new SnowFluid(mSnowConfig);
+		mMetaballScene = new MetaballScene(mSnowConfig);
 
  		MaterialManager::getSingleton().setDefaultTextureFiltering(TFO_ANISOTROPIC);
  		MaterialManager::getSingleton().setDefaultAnisotropy(7);
@@ -126,9 +129,11 @@ namespace SnowSim
 			mCamera->setFarClipDistance(0);   // enable infinite far clip distance if we can
 		}
 
-		mMetaballApp.createScene(mSceneMgr);
-		mMetaballApp.createFrameListener(mRoot, mWindow, mCamera);
-		
+		//mMetaballApp.createScene(mSceneMgr);
+		//mMetaballApp.createFrameListener(mRoot, mWindow, mCamera);
+		mMetaballScene->createScene(mSceneMgr, mSnowFluid->mParticlesNode);
+		mMetaballScene->createFrameListener(mRoot, mWindow, mCamera, mSnowFluid->getSimulationSystem()->GetGridParams());
+
 		return;
 	}
 
