@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Ogre.h>
+#include <OISKeyboard.h>
 #include "../OgreSnowSim/SnowSimConfig.h"
 #include "../SPHSimLib/UniformGrid.cuh"
 
@@ -25,6 +26,9 @@ public:
 		Ogre::Camera* mCamera,
 		const GridParams& gridparam,
 		SnowSim::OgreSimRenderable *mParticlesEntity);
+
+	virtual bool keyPressed( const OIS::KeyEvent &arg );
+	virtual bool keyReleased( const OIS::KeyEvent &arg );
 
 private:
 	DynamicMesh* m_meshBuilder;
@@ -58,4 +62,5 @@ private:
 
 	SnowSim::Config *m_Config;
 	SnowSim::OgreSimRenderable *mParticlesEntity;
+	bool bShowMCSurface;
 };

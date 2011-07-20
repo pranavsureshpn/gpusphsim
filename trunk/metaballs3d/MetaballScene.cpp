@@ -15,7 +15,8 @@ MetaballScene::MetaballScene(SnowSim::Config *config)
 :m_meshBuilder(NULL),
 m_Config(config),
 m_marchingCube(NULL),
-m_scene(NULL)
+m_scene(NULL),
+bShowMCSurface(false)
 {
 }
 
@@ -177,15 +178,38 @@ bool MetaballScene::frameStarted(const Ogre::FrameEvent& evt)
 // 		m_keyboardDelay = 0;
 // 	}
 
-	m_scene->UpdateFields(m_totalTime);
+	if(bShowMCSurface)
+	{
+		m_scene->UpdateFields(m_totalTime);
 
-	//Recreate the mesh
-	m_marchingCube->CreateMesh();
+		//Recreate the mesh
+		m_marchingCube->CreateMesh();
+		m_marchingCube->GetMeshBuilder()->setVisible(true);
+	}else{
+		m_marchingCube->GetMeshBuilder()->setVisible(false);
+	}
 
 	return true;
 }
 
 bool MetaballScene::frameEnded(const Ogre::FrameEvent& evt)
 {
+	return true;
+}
+
+bool MetaballScene::keyPressed( const OIS::KeyEvent &arg )
+{
+	printf("MetaballScene::keyPressed()\n");
+	if (arg.key == OIS::KC_F)   // toggle visibility of advanced frame stats
+	{
+		bShowMCSurface = !bShowMCSurface;
+		printf("bShowMCSurface=%d\n",bShowMCSurface);
+	}
+	return true;
+}
+bool MetaballScene::keyReleased( const OIS::KeyEvent &arg )
+{
+	printf("MetaballScene::keyReleased()\n");
+
 	return true;
 }
