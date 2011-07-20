@@ -16,7 +16,8 @@ MetaballScene::MetaballScene(SnowSim::Config *config)
 m_Config(config),
 m_marchingCube(NULL),
 m_scene(NULL),
-bShowMCSurface(false)
+bShowMCSurface(false),
+bShowSPHParticles(true)
 {
 }
 
@@ -205,9 +206,13 @@ bool MetaballScene::keyPressed( const OIS::KeyEvent &arg )
 		bShowMCSurface = !bShowMCSurface;
 		printf("bShowMCSurface=%d\n",bShowMCSurface);
 		m_marchingCube->GetMeshBuilder()->setVisible(bShowMCSurface);
-		
 	}
-
+	if (arg.key == OIS::KC_G)   // toggle visibility of advanced frame stats
+	{
+		bShowSPHParticles = !bShowSPHParticles;
+		printf("bShowSPHParticles=%d\n",bShowSPHParticles);
+		mParticlesEntity->setVisible(bShowSPHParticles);
+	}
 	return true;
 }
 bool MetaballScene::keyReleased( const OIS::KeyEvent &arg )

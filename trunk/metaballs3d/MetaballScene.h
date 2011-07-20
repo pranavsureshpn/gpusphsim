@@ -63,4 +63,5 @@ private:
 	SnowSim::Config *m_Config;
 	SnowSim::OgreSimRenderable *mParticlesEntity;
 	bool bShowMCSurface;
+	bool bShowSPHParticles;
 };
