@@ -278,7 +278,11 @@ namespace SnowSim
 
 		mSnowFluid->keyPressed(mKeyboard, evt);
 
-		return BaseApplication::keyPressed(evt);
+		BaseApplication::keyPressed(evt);
+
+		mMetaballScene->keyPressed(evt);
+		
+		return true;
 	}
 
 
