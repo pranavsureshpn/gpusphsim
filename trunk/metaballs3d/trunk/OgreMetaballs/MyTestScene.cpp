@@ -2,6 +2,8 @@
 
 #include <cstdlib> 
 #include <cmath>
+#include <boost/math/special_functions/math_fwd.hpp>
+#include <boost/math/special_functions/fpclassify.hpp>
 
 #include "SphericalField.h"
 #include "ToroidalField.h"
@@ -28,7 +30,7 @@ MyTestScene::MyTestScene()
 
 //	m_nbrMaxBalls = 20;//4
 //	m_lifeTime = 3.2f*10.0f;
-	m_baseRadius = 0.5f*ScaleFactor*0.15f;
+	m_baseRadius = 0.5f*ScaleFactor*0.05f;
 //	m_minRadius  = 0.2f*ScaleFactor*0.1f;
 }
 
@@ -171,10 +173,17 @@ void MyTestScene::UpdateFields(float time)
 	// 			continue;
 	// 		}
 
+			if( boost::math::isnan(pVertexPos[i].x) 
+			 || boost::math::isnan(pVertexPos[i].y) 
+			 || boost::math::isnan(pVertexPos[i].z) )
+			{
+				printf("buf[%d]=<%f, %f, %f>\n", i,pVertexPos[i].x, pVertexPos[i].y, pVertexPos[i].z);
+				continue;
+			}
 			ball->Position.x = pVertexPos[i].x;//ball->Position += ball->Speed * deltaTime;
 			ball->Position.y = pVertexPos[i].y;
 			ball->Position.z = pVertexPos[i].z;
-			//printf("buf[%d]=<%f, %f, %f>\n", i,ball->Position.x, ball->Position.y, ball->Position.z);
+
 
 			ball->Field->SetCenter(ball->Position);
 
@@ -204,6 +213,6 @@ void MyTestScene::SetSceneSize()
 float MyTestScene::GetSpaceResolution() const
 {
 	//return 0.09f*ScaleFactor;
-	return 0.14f*ScaleFactor;
+	return 0.06f*ScaleFactor;
 }
 
