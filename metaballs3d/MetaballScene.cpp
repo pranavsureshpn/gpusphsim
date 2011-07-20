@@ -184,9 +184,9 @@ bool MetaballScene::frameStarted(const Ogre::FrameEvent& evt)
 
 		//Recreate the mesh
 		m_marchingCube->CreateMesh();
-		m_marchingCube->GetMeshBuilder()->setVisible(true);
+		//m_marchingCube->GetMeshBuilder()->setVisible(true);
 	}else{
-		m_marchingCube->GetMeshBuilder()->setVisible(false);
+		//m_marchingCube->GetMeshBuilder()->setVisible(false);
 	}
 
 	return true;
@@ -204,7 +204,10 @@ bool MetaballScene::keyPressed( const OIS::KeyEvent &arg )
 	{
 		bShowMCSurface = !bShowMCSurface;
 		printf("bShowMCSurface=%d\n",bShowMCSurface);
+		m_marchingCube->GetMeshBuilder()->setVisible(bShowMCSurface);
+		
 	}
+
 	return true;
 }
 bool MetaballScene::keyReleased( const OIS::KeyEvent &arg )
