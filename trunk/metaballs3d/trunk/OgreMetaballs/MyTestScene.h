@@ -22,7 +22,7 @@ public:
 	MyTestScene();
 	virtual ~MyTestScene();
 
-	void setParticleNum(const int num_){ m_nbrMaxBalls = num_;}
+//	void setParticleNum(const int num_){ m_nbrMaxBalls = num_;}
 
 protected:
 	virtual void CreateFields() override;
@@ -34,15 +34,18 @@ protected:
 
 	void createBalls();
 	void destroyBalls();
+
 private:
 	AdditiveField* m_finalField;
 
-	int m_nbrMaxBalls;
+//	int m_nbrMaxBalls;
 //	float m_lifeTime;
 	float m_baseRadius;
-	float m_minRadius;
+//	float m_minRadius;
 	BallList m_balls;
 
 //	float m_lastSpawnTime;
 //	float m_lastUpdateTime;
+	void createBalls_Random();
+	void createBalls_HardwareBufferPosition();
 };

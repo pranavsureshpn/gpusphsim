@@ -26,10 +26,10 @@ MyTestScene::MyTestScene()
 //	m_lastSpawnTime = 0;
 //	m_lastUpdateTime = 0;
 
-	m_nbrMaxBalls = 20;//4
+//	m_nbrMaxBalls = 20;//4
 //	m_lifeTime = 3.2f*10.0f;
-	m_baseRadius = 0.5f*ScaleFactor*0.2f;
-	m_minRadius  = 0.2f*ScaleFactor*0.2f;
+	m_baseRadius = 0.5f*ScaleFactor*0.15f;
+//	m_minRadius  = 0.2f*ScaleFactor*0.1f;
 }
 
 MyTestScene::~MyTestScene()
@@ -62,12 +62,16 @@ void MyTestScene::CreateFields()
 
 	createBalls();
 }
-
 void MyTestScene::createBalls()
+{
+	//createBalls_Random();
+	createBalls_HardwareBufferPosition();
+}
+void MyTestScene::createBalls_Random()
 {
 	destroyBalls();
 
-	for(size_t i=0; i<m_nbrMaxBalls; ++i)
+	for(size_t i=0; i<10; ++i)
 	{
 		CascadeMetaBall* ball = new CascadeMetaBall();
 
@@ -76,24 +80,58 @@ void MyTestScene::createBalls()
 			-1.1f           * ScaleFactor,
 			random() * 1.0f * ScaleFactor);	
 
-		ball->Speed = Vector3(
-			random() * 0.2f * ScaleFactor,
-			1.0f + 0.3f * random() * ScaleFactor,
-			random() * 0.2f * ScaleFactor);
-
+		ball->Speed = Vector3::ZERO;
 		ball->Lifetime = 0.0f;
-
 		ball->Field = new SphericalField(ball->Position, m_baseRadius);
 
 		m_balls.push_back(ball);
 
 		m_finalField->AddField(ball->Field);
 	}
+}
+void MyTestScene::createBalls_HardwareBufferPosition()
+{
+	assert(mParticlesEntity&&"mParticlesEntity is NULL");
+	destroyBalls();
+
+	Ogre::HardwareVertexBufferSharedPtr VBuf = mParticlesEntity->getVBufPos();
+	std::size_t elementTypeSizeInByte = VBuf->getVertexSize();
+	std::size_t NUM = VBuf->getNumVertices();
+//	assert(m_nbrMaxBalls==NUM);	
+	//printf("elementTypeSizeInByte=%d, num=%d\n", elementTypeSizeInByte, NUM);
+
+	Ogre::Vector4* pVertexPos = static_cast<Ogre::Vector4*>(VBuf->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+	if(pVertexPos!=NULL)
+	{
+		for(size_t i=0; i<NUM; ++i)
+		{
+			CascadeMetaBall* ball = new CascadeMetaBall();
+
+			ball->Position.x = pVertexPos[i].x;
+			ball->Position.y = pVertexPos[i].y;
+			ball->Position.z = pVertexPos[i].z;
+
+			ball->Speed = Vector3::ZERO;
+			ball->Lifetime = 0.0f;
+
+			ball->Field = new SphericalField(ball->Position, m_baseRadius);
+
+			m_balls.push_back(ball);
+
+			m_finalField->AddField(ball->Field);
+		}
+	}else{
+		printf("[error]create balls, pVertexPos is NULL!\n");
+	}
+	VBuf->unlock();
 
 }
 
 void MyTestScene::UpdateFields(float time)
 {
+// 	if(m_nbrMaxBalls!=m_balls.size()){
+// 		createBalls();
+// 	}
 // 	if(m_lastUpdateTime == 0)
 // 	{
 // 		m_lastUpdateTime = time;
@@ -107,7 +145,7 @@ void MyTestScene::UpdateFields(float time)
 	Ogre::HardwareVertexBufferSharedPtr VBuf = mParticlesEntity->getVBufPos();
 	std::size_t elementTypeSizeInByte = VBuf->getVertexSize();
 	std::size_t NUM = VBuf->getNumVertices();
-	assert(m_nbrMaxBalls==NUM);	
+	assert(m_balls.size()==NUM);	
 	//printf("elementTypeSizeInByte=%d, num=%d\n", elementTypeSizeInByte, NUM);
 
 	Ogre::Vector4* pVertexPos = static_cast<Ogre::Vector4*>(VBuf->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
@@ -136,7 +174,7 @@ void MyTestScene::UpdateFields(float time)
 			ball->Position.x = pVertexPos[i].x;//ball->Position += ball->Speed * deltaTime;
 			ball->Position.y = pVertexPos[i].y;
 			ball->Position.z = pVertexPos[i].z;
-			printf("buf[%d]=<%f, %f, %f>\n", i,ball->Position.x, ball->Position.y, ball->Position.z);
+			//printf("buf[%d]=<%f, %f, %f>\n", i,ball->Position.x, ball->Position.y, ball->Position.z);
 
 			ball->Field->SetCenter(ball->Position);
 

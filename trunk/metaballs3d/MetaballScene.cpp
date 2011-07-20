@@ -113,9 +113,6 @@ void MetaballScene::ResetScene(const GridParams& gridparam)
 	case 0:
 		{
 			m_scene = new MyTestScene();
-			std::size_t bufferSizeInByte = mParticlesEntity->GetCudaBufferPosition()->GetSize();
-			std::size_t elementTypeSizeInByte = mParticlesEntity->GetCudaBufferPosition()->GetElementSize();
-			((MyTestScene*)m_scene)->setParticleNum(bufferSizeInByte/elementTypeSizeInByte);
 		}
 		break;
 	case 1:
@@ -131,10 +128,11 @@ void MetaballScene::ResetScene(const GridParams& gridparam)
 		m_scene = new CascadeScene();
 		break;
 	}
+	m_scene->SetParticlesEntity(mParticlesEntity);
 	//m_scene->SetSceneSize(m_Config->terrainSettings.size);
 	m_scene->SetSceneSize(gridparam.grid_size.x);
 	m_scene->CreateFields();
-	m_scene->SetParticlesEntity(mParticlesEntity);
+
 
 	//Create the object responsible for the mesh creation
 	m_marchingCube = new MarchingCubesImpl(m_meshBuilder);
