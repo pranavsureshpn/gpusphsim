@@ -29,8 +29,8 @@ protected:
 	virtual void UpdateFields(float time) override;
 
 	virtual const ScalarField3D* GetScalarField() const override;
-	virtual void SetSceneSize();
-	virtual float GetSpaceResolution() const override;
+//	virtual void SetSceneSize();
+//	virtual float GetSpaceResolution() const override;
 
 	void createBalls();
 	void destroyBalls();
@@ -40,7 +40,7 @@ private:
 
 //	int m_nbrMaxBalls;
 //	float m_lifeTime;
-	float m_baseRadius;
+//	float m_baseRadius;
 //	float m_minRadius;
 	BallList m_balls;
 

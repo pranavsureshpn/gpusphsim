@@ -60,6 +60,7 @@ namespace SnowSim {
 		loadSceneConfig();
 		loadFluidConfig();
 		loadTerrainConfig();
+		loadMarchingCubeConfig();
 	}
 
 	void Config::loadSceneConfig()
@@ -255,5 +256,26 @@ namespace SnowSim {
 			}
 
 		}
+	}
+	//
+	void Config::loadMarchingCubeConfig()
+	{
+		Ogre::ConfigFile::SettingsIterator iter = mCfg->getSettingsIterator("MarchingCube");
+		while(iter.hasMoreElements())
+		{
+			String name = iter.peekNextKey();
+			Ogre::StringUtil::toLowerCase(name);
+			String value = iter.getNext();
+
+			if(name == "baseradius")
+			{
+				marchingcubeSettings.BaseRadius = StringConverter::parseReal(value);
+			}
+			else if(name == "spaceresolution")
+			{
+				marchingcubeSettings.SpaceResolution = StringConverter::parseReal(value);
+			}
+		}
+
 	}
 }

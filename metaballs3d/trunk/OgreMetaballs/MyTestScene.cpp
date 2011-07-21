@@ -17,7 +17,7 @@
 //-----------------------------------
 
 extern float random();
-extern float ScaleFactor;
+
 
 //-----------------------------------
 // CascadeScene
@@ -30,8 +30,8 @@ MyTestScene::MyTestScene()
 
 //	m_nbrMaxBalls = 20;//4
 //	m_lifeTime = 3.2f*10.0f;
-	m_baseRadius = 0.5f*ScaleFactor*0.05f;
-//	m_minRadius  = 0.2f*ScaleFactor*0.1f;
+//	m_baseRadius = 0.2f*ScaleFactor;
+//	m_minRadius  = 0.02f*ScaleFactor;
 }
 
 MyTestScene::~MyTestScene()
@@ -84,7 +84,7 @@ void MyTestScene::createBalls_Random()
 
 		ball->Speed = Vector3::ZERO;
 		ball->Lifetime = 0.0f;
-		ball->Field = new SphericalField(ball->Position, m_baseRadius);
+		ball->Field = new SphericalField(ball->Position, GetParticleRadius());
 
 		m_balls.push_back(ball);
 
@@ -116,7 +116,7 @@ void MyTestScene::createBalls_HardwareBufferPosition()
 			ball->Speed = Vector3::ZERO;
 			ball->Lifetime = 0.0f;
 
-			ball->Field = new SphericalField(ball->Position, m_baseRadius);
+			ball->Field = new SphericalField(ball->Position, GetParticleRadius());
 
 			m_balls.push_back(ball);
 
@@ -205,14 +205,14 @@ const ScalarField3D* MyTestScene::GetScalarField() const
 	return m_finalField;
 }
 
-void MyTestScene::SetSceneSize()
-{
-	m_SceneSize = 4.0f * ScaleFactor;
-}
+// void MyTestScene::SetSceneSize()
+// {
+// 	m_SceneSize = 4.0f * ScaleFactor;
+// }
 
-float MyTestScene::GetSpaceResolution() const
-{
-	//return 0.09f*ScaleFactor;
-	return 0.06f*ScaleFactor;
-}
+// float MyTestScene::GetSpaceResolution() const
+// {
+// 	//return 0.09f*ScaleFactor;
+// 	return 0.09f*ScaleFactor;
+// }
 

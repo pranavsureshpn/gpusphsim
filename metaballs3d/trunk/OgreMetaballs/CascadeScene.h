@@ -41,8 +41,8 @@ protected:
 	virtual void UpdateFields(float time);
 
 	virtual const ScalarField3D* GetScalarField() const;
-	virtual void SetSceneSize();
-	virtual float GetSpaceResolution() const;
+//	virtual void SetSceneSize();
+//	virtual float GetSpaceResolution() const;
 	
 private:
 	AdditiveField* m_finalField;

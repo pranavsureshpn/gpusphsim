@@ -7,6 +7,9 @@
 #include "./trunk/OgreMetaballs/MyTestScene.h"
 #include "../OgreSnowSim/OgreSimRenderable.h"
 #include "../OgreSnowSim/OgreSimBuffer.h"
+
+extern float ScaleFactor;
+
 //-----------------------------------
 // MetaballScene
 //-----------------------------------
@@ -115,24 +118,35 @@ void MetaballScene::ResetScene(const GridParams& gridparam)
 	case 0:
 		{
 			m_scene = new MyTestScene();
+			m_scene->SetParticleRadius(m_Config->marchingcubeSettings.BaseRadius*ScaleFactor);
+			m_scene->SetSpaceResolution(m_Config->marchingcubeSettings.SpaceResolution*ScaleFactor);
+			m_scene->SetSceneSize(gridparam.grid_size.x);
 		}
 		break;
 	case 1:
 		m_scene = new CascadeScene();
+		m_scene->SetParticleRadius(0.5f*ScaleFactor*10.0f);
+		m_scene->SetSpaceResolution(0.09f*ScaleFactor);
+		m_scene->SetSceneSize(4.0f*ScaleFactor);
 		break;
 // 	case 2:
 // 		m_scene = new TorusScene();
+//		m_scene->SetParticleRadius(?);
+//		m_scene->SetSpaceResolution(?);
+//		m_scene->SetSceneSize(6.0);
 // 		break;
 // 	case 3:
 // 		m_scene = new PlaneScene();
+//		m_scene->SetParticleRadius(?);
+//		m_scene->SetSpaceResolution(?);
+//		m_scene->SetSceneSize(6.0);
 // 		break;
 	default:
-		m_scene = new CascadeScene();
+		assert(0);
 		break;
 	}
 	m_scene->SetParticlesEntity(mParticlesEntity);
 	//m_scene->SetSceneSize(m_Config->terrainSettings.size);
-	m_scene->SetSceneSize(gridparam.grid_size.x);
 	m_scene->CreateFields();
 
 

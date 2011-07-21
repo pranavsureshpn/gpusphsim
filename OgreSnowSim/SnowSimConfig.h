@@ -70,6 +70,12 @@ namespace SnowSim
 		bool showDebugNormals;
 	};
 
+	struct MarchingCubeSettings
+	{
+		Ogre::Real BaseRadius;
+		Ogre::Real SpaceResolution;
+	};
+
 	class Config
 	{
 	public:
@@ -80,6 +86,7 @@ namespace SnowSim
 		FluidSettings fluidSettings;
 		TerrainSettings terrainSettings;
 		SceneSettings sceneSettings;
+		MarchingCubeSettings marchingcubeSettings;
 
 		Ogre::ConfigFile* getCfg() { return mCfg; }
 
@@ -87,10 +94,11 @@ namespace SnowSim
 
 		Ogre::ConfigFile *mCfg;
 
-		void Config::loadConfig();
-		void Config::loadSceneConfig();
-		void Config::loadFluidConfig();
-		void Config::loadTerrainConfig();
+		void loadConfig();
+		void loadSceneConfig();
+		void loadFluidConfig();
+		void loadTerrainConfig();
+		void loadMarchingCubeConfig();
 
 	};
 
