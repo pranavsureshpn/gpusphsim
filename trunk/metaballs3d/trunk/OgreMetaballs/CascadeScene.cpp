@@ -11,7 +11,7 @@
 //-----------------------------------
 // Random
 //-----------------------------------
-float ScaleFactor = 250.0f;
+
 
 float random()
 {
@@ -128,14 +128,14 @@ const ScalarField3D* CascadeScene::GetScalarField() const
 	return m_finalField;
 }
 
-void CascadeScene::SetSceneSize()
-{
-	m_SceneSize = 4.0f*ScaleFactor;
-}
+// void CascadeScene::SetSceneSize()
+// {
+// 	m_SceneSize = 4.0f*ScaleFactor;
+// }
 
-float CascadeScene::GetSpaceResolution() const
-{
-	return 0.09f*ScaleFactor;
-	//return 10.0f;
-}
+// float CascadeScene::GetSpaceResolution() const
+// {
+// 	return 0.09f*ScaleFactor;
+// 	//return 10.0f;
+// }
 
