@@ -2,6 +2,7 @@
 
 #include "./trunk/OgreMetaballs/DynamicMesh.h"
 #include "./trunk/OgreMetaballs/MarchingCubesImpl.h"
+#include "./trunk/OgreMetaballs/MarchingCubesImplWithCuda.h"
 #include "./trunk/OgreMetaballs/ScalarField3D.h"
 #include "./trunk/OgreMetaballs/CascadeScene.h"
 #include "./trunk/OgreMetaballs/MyTestScene.h"
@@ -26,6 +27,11 @@ bShowSPHParticles(true)
 
 MetaballScene::~MetaballScene()
 {
+	if(m_marchingCube){
+		m_marchingCube->unInitialize();
+		delete m_marchingCube;
+		m_marchingCube = NULL;
+	}
 }
 
 void MetaballScene::createScene(Ogre::SceneManager *mSceneMgr, Ogre::SceneNode *node)
@@ -151,7 +157,8 @@ void MetaballScene::ResetScene(const GridParams& gridparam)
 
 
 	//Create the object responsible for the mesh creation
-	m_marchingCube = new MarchingCubesImpl(m_meshBuilder);
+	//m_marchingCube = new MarchingCubesImpl(m_meshBuilder);
+	m_marchingCube = new MarchingCubesImplWithCuda(m_meshBuilder);
 	m_marchingCube->SetScalarField(m_scene->GetScalarField());
 	m_marchingCube->Initialize(m_scene->GetSceneSize(), m_scene->GetSpaceResolution(), 1);
 

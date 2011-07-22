@@ -6,7 +6,7 @@
 #include "../SPHSimLib/UniformGrid.cuh"
 
 class DynamicMesh;
-class MarchingCubesImpl;
+class MarchingCubesInterface;
 class MetaballsAbstractScene;
 namespace SnowSim
 {
@@ -46,7 +46,7 @@ protected:
 		const GridParams& gridparam);
 
 private:
-	MarchingCubesImpl* m_marchingCube;
+	MarchingCubesInterface* m_marchingCube;
 	MetaballsAbstractScene* m_scene;
 
 	float m_totalTime;
