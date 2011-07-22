@@ -1,10 +1,4 @@
-#include "MarchingCubesImpl.h"
-
-#define USE_OPENMP 1
-// Make sure that you turn on /openmp option in the project property
-#if USE_OPENMP
-#include "omp.h"
-#endif
+#include "MarchingCubesImplWithCuda.h"
 
 #include "ScalarField3D.h"
 #include "DynamicMesh.h"
@@ -16,18 +10,20 @@
 // MarchingCubesImpl
 //-----------------------------------
 
-MarchingCubesImpl::MarchingCubesImpl(DynamicMesh* meshBuilder)
+MarchingCubesImplWithCuda::MarchingCubesImplWithCuda(DynamicMesh* meshBuilder)
 : MarchingCubesInterface(meshBuilder)
 {
+	m_samplingGridVerticesSize = m_samplingGridVertices.size();
+	m_samplingGridCubesSize    = m_samplingGridCubes.size();
 }
 
 
-MarchingCubesImpl::~MarchingCubesImpl()
+MarchingCubesImplWithCuda::~MarchingCubesImplWithCuda()
 { 
 }
 
 
-// void MarchingCubesImpl::Initialize(float samplingSpaceSize, float samplingResolution, float samplingThreshold)
+// void MarchingCubesImplWithCuda::Initialize(float samplingSpaceSize, float samplingResolution, float samplingThreshold)
 // {
 // 	m_samplingSpaceSize = samplingSpaceSize;
 // 	m_samplingResolution = samplingResolution;
@@ -87,22 +83,22 @@ MarchingCubesImpl::~MarchingCubesImpl()
 // 	}
 // }
 // 
-SamplingGridVertice& MarchingCubesImpl::GetGridVertice(int i, int j, int k)
+SamplingGridVertice& MarchingCubesImplWithCuda::GetGridVertice(int i, int j, int k)
 {
 	return m_samplingGridVertices[i + j * m_nbrSamples + k * m_nbrSamples * m_nbrSamples];
 }
 
-SamplingGridCube& MarchingCubesImpl::GetGridCube(int i, int j, int k)
+SamplingGridCube& MarchingCubesImplWithCuda::GetGridCube(int i, int j, int k)
 {
 	return m_samplingGridCubes[i + j * (m_nbrSamples-1) + k * (m_nbrSamples-1) * (m_nbrSamples-1)];
 }
 
-// void MarchingCubesImpl::AddField(ScalarField3D* field)
+// void MarchingCubesImplWithCuda::AddField(ScalarField3D* field)
 // {
 //     m_fields.push_back(field);
 // }
-
-// void MarchingCubesImpl::RemoveField(ScalarField3D* field)
+// 
+// void MarchingCubesImplWithCuda::RemoveField(ScalarField3D* field)
 // {	
 //     FieldList::iterator iter = std::find(m_fields.begin(), m_fields.end(), field);
 //     if(iter != m_fields.end())
@@ -110,8 +106,8 @@ SamplingGridCube& MarchingCubesImpl::GetGridCube(int i, int j, int k)
 //         m_fields.erase(iter);
 //     }
 // }
-// 
-// void MarchingCubesImpl::CreateMesh()
+
+// void MarchingCubesImplWithCuda::CreateMesh()
 // {
 // 	//Begin the construction of the mesh
 // 	GetMeshBuilder()->BeginMesh();
@@ -134,15 +130,12 @@ SamplingGridCube& MarchingCubesImpl::GetGridCube(int i, int j, int k)
 // 	GetMeshBuilder()->EndMesh();
 // }
 
-void MarchingCubesImpl::SampleSpace()
+void MarchingCubesImplWithCuda::SampleSpace()
 {
 	//the openmp parallel for expect signed loop counter
-	int size = m_samplingGridVertices.size();
+	assert(m_samplingGridVerticesSize==m_samplingGridVertices.size());//int size = m_samplingGridVertices.size();
 
-	#if USE_OPENMP
-	#pragma omp parallel for  
-	#endif
-	for(int i=0; i<size; i++)
+	for(int i=0; i<m_samplingGridVerticesSize; i++)
 	{		
 		//The indirection created with 'vertice' actually improve performances
 		SamplingGridVertice& vertice = m_samplingGridVertices[i];
@@ -150,16 +143,17 @@ void MarchingCubesImpl::SampleSpace()
 	}
 }
 
-void MarchingCubesImpl::March()
+void MarchingCubesImplWithCuda::March()
 {
-	int size = m_samplingGridCubes.size();
-	for(int i=0; i<size; i++)
+	assert(m_samplingGridCubesSize==m_samplingGridCubes.size());//int size = m_samplingGridCubes.size();
+	
+	for(int i=0; i<m_samplingGridCubesSize; i++)
 	{
 		SampleCube(m_samplingGridCubes[i]);
 	}
 }
 
-void MarchingCubesImpl::SampleCube(SamplingGridCube& cube)
+void MarchingCubesImplWithCuda::SampleCube(SamplingGridCube& cube)
 {
 	//Build a index to determine the state of the cube. 
 	//The #n bit is set to 1 if the vertice #n is inside of the surface.
@@ -211,28 +205,40 @@ void MarchingCubesImpl::SampleCube(SamplingGridCube& cube)
 	//Every three edges define a triangle.
 	const int* cubeEdgeArray = MarchingCubesData::GetTriangleList(cubeIndex);
 	for(int n = 0; cubeEdgeArray[n] != -1; n+=3)
-	{	
+	{
 		GetMeshBuilder()->AddTriangle(
 			vertexIdxs[cubeEdgeArray[n+1]], 
 			vertexIdxs[cubeEdgeArray[n]], 
 			vertexIdxs[cubeEdgeArray[n+2]]);
 	}
 }
-void MarchingCubesImpl::ResetGridVertexBuffer(const size_t elementNum)
+void MarchingCubesImplWithCuda::ResetGridVertexBuffer(const size_t elementNum)
 {
 	m_samplingGridVertices.clear();
 	m_samplingGridVertices.resize(elementNum);
+	m_samplingGridVerticesSize = m_samplingGridVertices.size();
+
+	m_samplingGridVertices_t = new SamplingGridVertice_t[elementNum];
 }
-void MarchingCubesImpl::ResetGridCubesBuffer(const size_t elementNum)
+void MarchingCubesImplWithCuda::ResetGridCubesBuffer(const size_t elementNum)
 {
 	m_samplingGridCubes.clear();
 	m_samplingGridCubes.resize(elementNum);
+	m_samplingGridCubesSize = m_samplingGridCubes.size();
+
+	m_samplingGridCubes_t = new SamplingGridCube_t[elementNum];
 }
-void MarchingCubesImpl::freeGridVertexBuffer()
+void MarchingCubesImplWithCuda::freeGridVertexBuffer()
 {
 	m_samplingGridVertices.clear();
+
+	delete []m_samplingGridVertices_t;
+	m_samplingGridVertices_t = NULL;
 }
-void MarchingCubesImpl::freeGridCubesBuffer()
+void MarchingCubesImplWithCuda::freeGridCubesBuffer()
 {
 	m_samplingGridCubes.clear();
+	
+	delete []m_samplingGridCubes_t;
+	m_samplingGridCubes_t = NULL;
 }

@@ -242,6 +242,7 @@
 				EnableEnhancedInstructionSet="2"
 				FloatingPointModel="2"
 				RuntimeTypeInfo="true"
+				OpenMP="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="true"
@@ -578,6 +579,36 @@
 					>
 				</File>
 				<File
+					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MarchingCubesImplWithCuda.cpp"
+					>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MarchingCubesImplWithCuda.h"
+					>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MarchingCubesInterface.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MarchingCubesInterface.h"
+					>
+				</File>
+				<File
 					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MetaballsAbstractScene.cpp"
 					>
 				</File>
@@ -588,18 +619,50 @@
 				<File
 					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MetaballsApp.cpp"
 					>
+					<FileConfiguration
+						Name="Release|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MetaballsApp.h"
 					>
+					<FileConfiguration
+						Name="Release|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MetaballsFrameListener.cpp"
 					>
+					<FileConfiguration
+						Name="Release|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MetaballsFrameListener.h"
 					>
+					<FileConfiguration
+						Name="Release|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MyTestScene.cpp"
