@@ -33,6 +33,10 @@ MetaballScene::~MetaballScene()
 		delete m_marchingCube;
 		m_marchingCube = NULL;
 	}
+	if(m_scene != NULL)
+	{
+		delete m_scene;
+	}
 }
 
 void MetaballScene::createScene(Ogre::SceneManager *mSceneMgr, Ogre::SceneNode *node)

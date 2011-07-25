@@ -37,8 +37,7 @@ MyTestScene2::~MyTestScene2()
 }
 void MyTestScene2::destroyBalls()
 {
-	//delete m_finalField;
-	//m_finalField = NULL;
+	m_finalField.DeleteFieldBuffer();
 }
 void MyTestScene2::CreateFields()
 {
@@ -71,7 +70,7 @@ void MyTestScene2::createBalls_HardwareBufferPosition()
 // 	}else{
 // 		printf("[error]create balls, pVertexPos is NULL!\n");
 // 	}
-	m_finalField.SetFieldBuffer(pVertexPos, VBuf->getNumVertices());
+	m_finalField.NewFieldBuffer(pVertexPos, VBuf->getNumVertices());
 	m_finalField.SetSphereRaidusSquared(GetParticleRadius());
 	VBuf->unlock();
 }
