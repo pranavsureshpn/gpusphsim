@@ -1,17 +1,18 @@
 #pragma once
 #include "ScalarField3D.h"
 
+class SphericalField;
+
 //-----------------------------------
-// AdditiveField
+// MetaballField
 //-----------------------------------
 
-
-class AdditiveField :
+class MetaballField :
 	public ScalarField3D
 {
 public:
-	AdditiveField();
-	virtual ~AdditiveField();
+	MetaballField();
+	virtual ~MetaballField();
 
 	void AddField(ScalarField3D* field);
 	void RemoveField(ScalarField3D* field);
@@ -20,6 +21,5 @@ public:
 	virtual Vector3 Gradient(const Vector3& position) const override;
 	virtual ColourValue Color(const Vector3& position) const override;
 
-private:
-	FieldList m_fields;
+	std::vector<ScalarField3D*> m_fields;
 };

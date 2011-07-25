@@ -581,13 +581,6 @@
 				<File
 					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MarchingCubesImplWithCuda.cpp"
 					>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MarchingCubesImplWithCuda.h"
@@ -606,6 +599,14 @@
 				</File>
 				<File
 					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MarchingCubesInterface.h"
+					>
+				</File>
+				<File
+					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MetaballField.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MetaballField.h"
 					>
 				</File>
 				<File
@@ -670,6 +671,14 @@
 				</File>
 				<File
 					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MyTestScene.h"
+					>
+				</File>
+				<File
+					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MyTestScene2.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MyTestScene2.h"
 					>
 				</File>
 				<File

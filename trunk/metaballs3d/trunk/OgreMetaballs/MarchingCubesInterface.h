@@ -33,9 +33,6 @@ struct SamplingGridCube
 //-----------------------------------
 // MarchingCubesImpl
 //-----------------------------------
-
-typedef std::vector<ScalarField3D*> FieldList;
-
 class MarchingCubesInterface
 {
 public:
