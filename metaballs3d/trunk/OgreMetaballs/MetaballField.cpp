@@ -9,10 +9,16 @@
 MetaballField::MetaballField()
 {
 	m_radiusSquared = -1.0f;
+	m_spherePosition = NULL;
+	m_spherePositionBufElementSize = -1;
 }
 
 MetaballField::~MetaballField()
 {
+	if(m_spherePosition)
+	{
+		assert(0&&"m_spherePosition is not deleted. please check your code.");
+	}
 // 	std::vector<ScalarField3D*>::iterator iter;
 // 	for(iter = m_fields.begin(); iter < m_fields.end(); ++iter)
 // 	{
@@ -43,11 +49,10 @@ void MetaballField::RemoveField(ScalarField3D* field)
 float MetaballField::Scalar(const Vector3& position) const
 {
 	assert(m_radiusSquared!=-1.0f);
-	const std::size_t size = m_spherePosition.size();
 
 	// Sum = E( r/|p[i]-position|^2 )
 	float scalar = 0;
-	for(size_t i = 0; i < size; ++i)
+	for(size_t i = 0; i < m_spherePositionBufElementSize; ++i)
 	{
 		scalar += m_radiusSquared / position.squaredDistance(m_spherePosition[i]);
 	}
@@ -57,10 +62,9 @@ float MetaballField::Scalar(const Vector3& position) const
 Vector3 MetaballField::Gradient(const Vector3& position) const
 {
 	assert(m_sphereRaidus!=-1.0f);
-	const std::size_t size = m_spherePosition.size();
 
 	Vector3 gradient = Vector3::ZERO;
-	for(size_t i = 0; i < size; ++i)
+	for(size_t i = 0; i < m_spherePositionBufElementSize; ++i)
 	{
 		Vector3 relativePos = m_spherePosition[i] - position;
 		float lengthSquared = relativePos.squaredLength();
@@ -76,11 +80,14 @@ ColourValue MetaballField::Color(const Vector3& position) const
 	return m_color;
 }
 
-void MetaballField::SetFieldBuffer(Ogre::Vector4* &ogreHardwareBuffer, const std::size_t size)
+void MetaballField::NewFieldBuffer(Ogre::Vector4* &ogreHardwareBuffer, const std::size_t size)
 {
 	printf("MetaballField::SetFieldBuffer(%d)\n", size);
 	assert(ogreHardwareBuffer && size>0);
-	m_spherePosition.resize(size);
+	
+	m_spherePosition = new Ogre::Vector3[size];
+	m_spherePositionBufElementSize = size;
+
 	for(std::size_t i=0; i<size; ++i)
 	{
 		m_spherePosition[i].x = ogreHardwareBuffer[i].x;
@@ -88,10 +95,11 @@ void MetaballField::SetFieldBuffer(Ogre::Vector4* &ogreHardwareBuffer, const std
 		m_spherePosition[i].z = ogreHardwareBuffer[i].z;
 	}
 }
+
 void MetaballField::UpdateFieldBuffer(Ogre::Vector4* &ogreHardwareBuffer, const std::size_t size)
 {
 	//printf("MetaballField::UpdateFieldBuffer(%d)\n", size);
-	assert(ogreHardwareBuffer && m_spherePosition.size()==size);
+	assert(ogreHardwareBuffer && m_spherePositionBufElementSize==size);
 
 	for(std::size_t i=0; i<size; ++i)
 	{
@@ -107,4 +115,10 @@ void MetaballField::UpdateFieldBuffer(Ogre::Vector4* &ogreHardwareBuffer, const 
 		m_spherePosition[i].z = ogreHardwareBuffer[i].z;
 		//printf("buf[%d]=<%f, %f, %f>\n", i,m_spherePosition[i].x, m_spherePosition[i].y, m_spherePosition[i].z);
 	}
+}
+void MetaballField::DeleteFieldBuffer()
+{
+	delete[] m_spherePosition;
+	m_spherePosition = NULL;
+	m_spherePositionBufElementSize = -1;
 }
