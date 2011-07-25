@@ -6,6 +6,7 @@
 #include "./trunk/OgreMetaballs/ScalarField3D.h"
 #include "./trunk/OgreMetaballs/CascadeScene.h"
 #include "./trunk/OgreMetaballs/MyTestScene.h"
+#include "./trunk/OgreMetaballs/MyTestScene2.h"
 #include "../OgreSnowSim/OgreSimRenderable.h"
 #include "../OgreSnowSim/OgreSimBuffer.h"
 
@@ -95,8 +96,8 @@ void MetaballScene::newFrameListener(
 
 	m_scene = NULL;
 
-	m_nbrScene = 4;
-	m_currentSceneId = 0;
+	m_nbrScene = 5;
+	m_currentSceneId = 4;
 
 	ResetScene(gridparam);
 
@@ -147,6 +148,14 @@ void MetaballScene::ResetScene(const GridParams& gridparam)
 //		m_scene->SetSpaceResolution(?);
 //		m_scene->SetSceneSize(6.0);
 // 		break;
+  	case 4:
+		{
+			m_scene = new MyTestScene2();
+			m_scene->SetParticleRadius(m_Config->marchingcubeSettings.BaseRadius*ScaleFactor);
+			m_scene->SetSpaceResolution(m_Config->marchingcubeSettings.SpaceResolution*ScaleFactor);
+			m_scene->SetSceneSize(gridparam.grid_size.x);
+		}
+  		break;
 	default:
 		assert(0);
 		break;

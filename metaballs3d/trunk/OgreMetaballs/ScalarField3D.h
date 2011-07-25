@@ -35,3 +35,5 @@ public:
 protected:
 	ColourValue m_color;
 };
+
+typedef std::vector<ScalarField3D*> FieldList;
