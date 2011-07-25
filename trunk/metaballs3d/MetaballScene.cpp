@@ -1,10 +1,10 @@
 #include "MetaballScene.h"
 
 #include "./trunk/OgreMetaballs/DynamicMesh.h"
-#include "./trunk/OgreMetaballs/MarchingCubesImpl.h"
+//#include "./trunk/OgreMetaballs/MarchingCubesImpl.h"
 #include "./trunk/OgreMetaballs/MarchingCubesImplWithCuda.h"
 #include "./trunk/OgreMetaballs/ScalarField3D.h"
-#include "./trunk/OgreMetaballs/CascadeScene.h"
+//#include "./trunk/OgreMetaballs/CascadeScene.h"
 #include "./trunk/OgreMetaballs/MyTestScene.h"
 #include "./trunk/OgreMetaballs/MyTestScene2.h"
 #include "../OgreSnowSim/OgreSimRenderable.h"

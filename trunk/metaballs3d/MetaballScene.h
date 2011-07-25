@@ -3,7 +3,7 @@
 #include <Ogre.h>
 #include <OISKeyboard.h>
 #include "../OgreSnowSim/SnowSimConfig.h"
-#include "../SPHSimLib/UniformGrid.cuh"
+//#include "../SPHSimLib/UniformGrid.cuh"
 
 class DynamicMesh;
 class MarchingCubesInterface;

@@ -62,15 +62,17 @@ void MyTestScene2::createBalls_HardwareBufferPosition()
 	//printf("elementTypeSizeInByte=%d, num=%d\n", elementTypeSizeInByte, NUM);
 
 	Ogre::Vector4* pVertexPos = static_cast<Ogre::Vector4*>(VBuf->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-	if(pVertexPos!=NULL)
-	{
-		for(size_t i=0; i<NUM; ++i)
-		{
-			m_finalField.AddField(new SphericalField(Vector3(pVertexPos[i].x,pVertexPos[i].y,pVertexPos[i].z) , GetParticleRadius()));
-		}
-	}else{
-		printf("[error]create balls, pVertexPos is NULL!\n");
-	}
+// 	if(pVertexPos!=NULL)
+// 	{
+// 		for(size_t i=0; i<NUM; ++i)
+// 		{
+// 			m_finalField.AddField(new SphericalField(Vector3(pVertexPos[i].x,pVertexPos[i].y,pVertexPos[i].z) , GetParticleRadius()));
+// 		}
+// 	}else{
+// 		printf("[error]create balls, pVertexPos is NULL!\n");
+// 	}
+	m_finalField.SetFieldBuffer(pVertexPos, VBuf->getNumVertices());
+	m_finalField.SetSphereRaidusSquared(GetParticleRadius());
 	VBuf->unlock();
 }
 
@@ -79,27 +81,28 @@ void MyTestScene2::UpdateFields(float time)
 	Ogre::HardwareVertexBufferSharedPtr VBuf = mParticlesEntity->getVBufPos();
 	std::size_t elementTypeSizeInByte = VBuf->getVertexSize();
 	std::size_t NUM = VBuf->getNumVertices();
-	assert(m_balls.size()==NUM);	
+//	assert(m_balls.size()==NUM);	
 	//printf("elementTypeSizeInByte=%d, num=%d\n", elementTypeSizeInByte, NUM);
 
 	Ogre::Vector4* pVertexPos = static_cast<Ogre::Vector4*>(VBuf->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-	if(pVertexPos!=NULL)
-	{
-		//Update all the balls
-		for(std::size_t i=0; i<NUM; ++i)
-		{
-			if( boost::math::isnan(pVertexPos[i].x) 
-			 || boost::math::isnan(pVertexPos[i].y) 
-			 || boost::math::isnan(pVertexPos[i].z) )
-			{
-				printf("buf[%d]=<%f, %f, %f>\n", i,pVertexPos[i].x, pVertexPos[i].y, pVertexPos[i].z);
-				continue;
-			}
-			((SphericalField*)(m_finalField.m_fields[i]))->SetCenter(Vector3(pVertexPos[i].x,pVertexPos[i].y,pVertexPos[i].z));
-		}
-	}else{
-		printf("[error]pVertexPos is NULL!\n");
-	}
+// 	if(pVertexPos!=NULL)
+// 	{
+// 		//Update all the balls
+// 		for(std::size_t i=0; i<NUM; ++i)
+// 		{
+// 			if( boost::math::isnan(pVertexPos[i].x) 
+// 			 || boost::math::isnan(pVertexPos[i].y) 
+// 			 || boost::math::isnan(pVertexPos[i].z) )
+// 			{
+// 				printf("buf[%d]=<%f, %f, %f>\n", i,pVertexPos[i].x, pVertexPos[i].y, pVertexPos[i].z);
+// 				continue;
+// 			}
+// 			((SphericalField*)(m_finalField.m_fields[i]))->SetCenter(Vector3(pVertexPos[i].x,pVertexPos[i].y,pVertexPos[i].z));
+// 		}
+// 	}else{
+// 		printf("[error]pVertexPos is NULL!\n");
+// 	}
+	m_finalField.UpdateFieldBuffer(pVertexPos, VBuf->getNumVertices());
 	VBuf->unlock();
 }
 
