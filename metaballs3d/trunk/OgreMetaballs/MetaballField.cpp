@@ -108,11 +108,11 @@ void MetaballField::UpdateFieldBuffer(Ogre::Vector4* &ogreHardwareBuffer, const 
 
 	for(std::size_t i=0; i<size; ++i)
 	{
-		if( boost::math::isnan(m_spherePosition[i].x) 
-			|| boost::math::isnan(m_spherePosition[i].y) 
-			|| boost::math::isnan(m_spherePosition[i].z) )
+		if( boost::math::isnan(ogreHardwareBuffer[i].x) 
+			|| boost::math::isnan(ogreHardwareBuffer[i].y) 
+			|| boost::math::isnan(ogreHardwareBuffer[i].z) )
 		{
-			printf("buf[%d]=<%f, %f, %f>\n", i,m_spherePosition[i].x, m_spherePosition[i].y, m_spherePosition[i].z);
+			printf("buf[%d]=<%f, %f, %f>\n", i,ogreHardwareBuffer[i].x, ogreHardwareBuffer[i].y, ogreHardwareBuffer[i].z);
 			continue;
 		}
 		m_spherePosition[i].x = ogreHardwareBuffer[i].x;

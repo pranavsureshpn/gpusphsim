@@ -101,7 +101,8 @@ void MetaballScene::newFrameListener(
 	m_scene = NULL;
 
 	m_nbrScene = 5;
-	m_currentSceneId = 4;
+	//m_currentSceneId = 0;//please define CPU_SAMPLER in MarchingCubesImplWithCuda::SampleSpace()
+	m_currentSceneId = 4;  //please undefine CPU_SAMPLER in MarchingCubesImplWithCuda::SampleSpace()
 
 	ResetScene(gridparam);
 
