@@ -31,7 +31,7 @@ public:
 	std::size_t m_spherePositionBufElementSize;//how many element in the buffer.
 
 
-	void SetSphereRaidusSquared(const Ogre::Real raidus){ m_radiusSquared = raidus*raidus; }
+	void SetSphereRaidusSquared(const Ogre::Real raidus);
 
 	Ogre::Real m_radiusSquared;
 };
