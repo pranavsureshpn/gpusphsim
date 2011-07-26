@@ -56,6 +56,8 @@ protected:
  	virtual void SampleSpace()=0;
  	virtual void March()=0;
  	virtual void SampleCube(SamplingGridCube& cube)=0;
+	virtual void afterGridVerticeInit(){}
+	virtual void afterGridCubeInit(){}
 
 	// on buffer
 	virtual void ResetGridVertexBuffer(const size_t elementNum) = 0;

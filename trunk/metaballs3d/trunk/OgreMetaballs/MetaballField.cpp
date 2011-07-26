@@ -1,7 +1,9 @@
 #include "MetaballField.h"
-#include "SphericalField.h"
+
 #include <boost/math/special_functions/math_fwd.hpp>
 #include <boost/math/special_functions/fpclassify.hpp>
+#include "SphericalField.h"
+#include "../../MetaballCudaMgr.cuh"
 //-----------------------------------
 // AdditiveField
 //-----------------------------------
@@ -61,7 +63,7 @@ float MetaballField::Scalar(const Vector3& position) const
 }
 Vector3 MetaballField::Gradient(const Vector3& position) const
 {
-	assert(m_sphereRaidus!=-1.0f);
+	assert(m_radiusSquared!=-1.0f);
 
 	Vector3 gradient = Vector3::ZERO;
 	for(size_t i = 0; i < m_spherePositionBufElementSize; ++i)
@@ -94,6 +96,9 @@ void MetaballField::NewFieldBuffer(Ogre::Vector4* &ogreHardwareBuffer, const std
 		m_spherePosition[i].y = ogreHardwareBuffer[i].y;
 		m_spherePosition[i].z = ogreHardwareBuffer[i].z;
 	}
+	//cuda
+	assert(sizeof(Ogre::Vector3)==3*sizeof(float));
+	MetaballCudaMgr::getSingletonPtr()->mallocSpherePosition(m_spherePositionBufElementSize, sizeof(Ogre::Vector3));
 }
 
 void MetaballField::UpdateFieldBuffer(Ogre::Vector4* &ogreHardwareBuffer, const std::size_t size)
@@ -115,10 +120,18 @@ void MetaballField::UpdateFieldBuffer(Ogre::Vector4* &ogreHardwareBuffer, const 
 		m_spherePosition[i].z = ogreHardwareBuffer[i].z;
 		//printf("buf[%d]=<%f, %f, %f>\n", i,m_spherePosition[i].x, m_spherePosition[i].y, m_spherePosition[i].z);
 	}
+	
+	//cuda
+	MetaballCudaMgr::getSingletonPtr()->setSpherePosition((float*)m_spherePosition, m_spherePositionBufElementSize);
+
 }
 void MetaballField::DeleteFieldBuffer()
 {
 	delete[] m_spherePosition;
 	m_spherePosition = NULL;
 	m_spherePositionBufElementSize = -1;
+
+	//cuda
+	MetaballCudaMgr::getSingletonPtr()->freeSpherePosition();
+
 }
