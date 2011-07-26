@@ -55,6 +55,7 @@ void MarchingCubesInterface::Initialize(float samplingSpaceSize, float samplingR
 			}
 		}
 	}
+	afterGridVerticeInit();
 
 	ResetGridCubesBuffer((m_nbrSamples-1) * (m_nbrSamples-1) * (m_nbrSamples-1));
 
@@ -79,6 +80,7 @@ void MarchingCubesInterface::Initialize(float samplingSpaceSize, float samplingR
 			}
 		}
 	}
+	afterGridCubeInit();
 }
 void MarchingCubesInterface::unInitialize()
 {

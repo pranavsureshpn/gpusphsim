@@ -16,6 +16,9 @@
 		/>
 	</Platforms>
 	<ToolFiles>
+		<DefaultToolFile
+			FileName="NvCudaRuntimeApi.rules"
+		/>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
@@ -31,6 +34,15 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="Cudart Build Rule"
+				Include="$(DXSDK_DIR)\include;$(NVSDKCOMPUTE_ROOT)\c\common\inc;$(CUDA_PATH)\include;$(OGRE_HOME)\include\OGRE;E:\dev\boost\1_46_1-tmp"
+				Arch1="13"
+				MaxRegCount="63"
+				ExtraNvccOptions="-ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
+				Optimization="0"
+				Runtime="3"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -123,6 +135,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="Cudart Build Rule"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -212,6 +227,15 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="Cudart Build Rule"
+				Include="$(DXSDK_DIR)\include;$(NVSDKCOMPUTE_ROOT)\c\common\inc;$(CUDA_PATH)\include;$(OGRE_HOME)\include\OGRE;E:\dev\boost\1_46_1-tmp"
+				Arch1="13"
+				MaxRegCount="63"
+				ExtraNvccOptions="-ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
+				Optimization="3"
+				Runtime="2"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -307,6 +331,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="Cudart Build Rule"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -507,6 +534,35 @@
 		<Filter
 			Name="metaballs3d"
 			>
+			<File
+				RelativePath="..\metaballs3d\MetaballCudaMgr.cu"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="Cudart Build Rule"
+						AddedDependencies=""
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="Cudart Build Rule"
+						Arch1="13"
+						MaxRegCount="63"
+						PtxAsOptionV="true"
+						ExtraNvccOptions="-ftz=true -prec-div=false -prec-sqrt=false -Xptxas -dlcm=ca"
+						Optimization="3"
+						Runtime="2"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\metaballs3d\MetaballCudaMgr.cuh"
+				>
+			</File>
 			<File
 				RelativePath="..\metaballs3d\MetaballScene.cpp"
 				>

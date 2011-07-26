@@ -35,7 +35,8 @@ protected:
 	virtual void SampleSpace();
 	virtual void March();
 	virtual void SampleCube(SamplingGridCube& cube);
-
+	virtual void afterGridVerticeInit();
+	virtual void afterGridCubeInit();
 	virtual void ResetGridVertexBuffer(const size_t elementNum);
 	virtual void ResetGridCubesBuffer(const size_t elementNum);
 	virtual void freeGridVertexBuffer();

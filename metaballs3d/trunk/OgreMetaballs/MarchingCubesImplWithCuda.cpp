@@ -5,7 +5,7 @@
 #include "MarchingCubesData.h"
 
 #include "FieldHelper.h"
-
+#include "../../MetaballCudaMgr.cuh"
 //-----------------------------------
 // MarchingCubesImpl
 //-----------------------------------
@@ -147,13 +147,17 @@ void MarchingCubesImplWithCuda::SampleSpace()
 {
 	//the openmp parallel for expect signed loop counter
 	//assert(m_samplingGridVerticesSize==m_samplingGridVertices.size());//int size = m_samplingGridVertices.size();
-
+#ifdef CPU_SAMPLER
 	for(int i=0; i<m_samplingGridVerticesSize; i++)
 	{
 		//The indirection created with 'vertice' actually improve performances
 		SamplingGridVertice& vertice = m_samplingGridVertices[i];
 		vertice.ScalarValue =  GetScalarField()->Scalar(vertice.Position);
 	}
+#else
+	MetaballCudaMgr::getSingletonPtr()->Scalar(m_nbrSamples, m_nbrSamples, m_nbrSamples);
+	MetaballCudaMgr::getSingletonPtr()->ScalarCallback(m_samplingGridVertices, m_samplingGridVerticesSize);
+#endif
 }
 
 void MarchingCubesImplWithCuda::March()
@@ -231,6 +235,13 @@ void MarchingCubesImplWithCuda::ResetGridVertexBuffer(const size_t elementNum)
 	
 	m_samplingGridVertices = new SamplingGridVertice[elementNum];//m_samplingGridVertices.resize(elementNum);
 	m_samplingGridVerticesSize = elementNum;
+	//
+	MetaballCudaMgr::getSingletonPtr()
+		->mallocSamplingGridVertices(
+		m_samplingGridVerticesSize, sizeof(SamplingGridVertice));
+	MetaballCudaMgr::getSingletonPtr()
+		->mallocSamplingGridVerticesScalar(
+		m_samplingGridVerticesSize, sizeof(float));
 }
 void MarchingCubesImplWithCuda::ResetGridCubesBuffer(const size_t elementNum)
 {
@@ -243,9 +254,27 @@ void MarchingCubesImplWithCuda::freeGridVertexBuffer()
 {
 	delete[] m_samplingGridVertices;//m_samplingGridVertices.clear();
 	m_samplingGridVertices = NULL;
+	//
+	MetaballCudaMgr::getSingletonPtr()
+		->freeSamplingGridVertices();
+	MetaballCudaMgr::getSingletonPtr()
+		->freeSamplingGridVerticesScalar();
 }
 void MarchingCubesImplWithCuda::freeGridCubesBuffer()
 {
 	delete[] m_samplingGridCubes;//m_samplingGridCubes.clear();
 	m_samplingGridCubes = NULL;
+}
+
+void MarchingCubesImplWithCuda::afterGridVerticeInit()
+{
+	printf("MarchingCubesImplWithCuda::afterGridVerticeInit()\n");
+	MetaballCudaMgr::getSingletonPtr()
+		->setSamplingGridVertices(
+		(float*)m_samplingGridVertices, m_samplingGridVerticesSize);
+}
+void MarchingCubesImplWithCuda::afterGridCubeInit()
+{
+	printf("MarchingCubesImplWithCuda::afterGridCubeInit()\n");
+//	MetaballCudaMgr::getSingletonPtr()->();
 }

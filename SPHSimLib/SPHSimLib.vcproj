@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="SPHSimLib"
 	ProjectGUID="{67D5C322-B23F-46AC-9199-6AE167E78807}"
 	RootNamespace="SPHSimLib"
