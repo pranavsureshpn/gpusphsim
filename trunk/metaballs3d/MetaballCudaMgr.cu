@@ -128,7 +128,7 @@ void MetaballCudaMgr::Scalar(const int gridSizeX, const int gridSizeY, const int
 		d_samplingGridVerticesCount
 	);
 	//cudaPrintfDisplay(stdout, true);
-    //CUDA_SAFE_CALL( cudaThreadSynchronize() );
+    CUDA_SAFE_CALL( cudaThreadSynchronize() );
     CUDA_SAFE_CALL( cudaMemcpy(
 		h_samplingGridVerticesScalar, 
 		d_samplingGridVerticesScalar, 
