@@ -37,21 +37,21 @@ public:
 
 	void SetThreadsPerBlock(const std::size_t threadsPerBlock_);
 
-//	void SetGridDim(const std::size_t gridx, const std::size_t gridy, const std::size_t gridz);
-//	void SetBlockDim(const std::size_t blockx,const std::size_t blocky,const std::size_t blockz);
+	void SetGridDim(const std::size_t gridx, const std::size_t gridy, const std::size_t gridz);
+	void SetBlockDim(const std::size_t blockx,const std::size_t blocky,const std::size_t blockz);
 
 protected:
 	MetaballCudaMgr();
 	void launch_Scalar1D();
-	//void launch_Scalar3D();
+	void launch_Scalar3D();
 	void deviceQuery();
 
 
 	static MetaballCudaMgr *m_singleton;
 
 	std::size_t threadsPerBlock;
-// 	dim3 gridDim;
-// 	dim3 blockDim;
+//  	dim3 gridDim;
+//  	dim3 blockDim;
 	cudaDeviceProp deviceProp;
 };
 #endif
