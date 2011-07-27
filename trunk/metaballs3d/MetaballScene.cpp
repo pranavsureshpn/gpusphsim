@@ -9,6 +9,7 @@
 #include "./trunk/OgreMetaballs/MyTestScene2.h"
 #include "../OgreSnowSim/OgreSimRenderable.h"
 #include "../OgreSnowSim/OgreSimBuffer.h"
+#include "MetaballCudaMgr.cuh"
 
 extern float ScaleFactor;
 
@@ -159,6 +160,7 @@ void MetaballScene::ResetScene(const GridParams& gridparam)
 			m_scene->SetParticleRadius(m_Config->marchingcubeSettings.BaseRadius*ScaleFactor);
 			m_scene->SetSpaceResolution(m_Config->marchingcubeSettings.SpaceResolution*ScaleFactor);
 			m_scene->SetSceneSize(gridparam.grid_size.x);
+			MetaballCudaMgr::getSingletonPtr()->SetThreadsPerBlock(m_Config->marchingcubeSettings.ThreadsPerBlock);
 		}
   		break;
 	default:
@@ -175,7 +177,6 @@ void MetaballScene::ResetScene(const GridParams& gridparam)
 	m_marchingCube = new MarchingCubesImplWithCuda(m_meshBuilder);
 	m_marchingCube->SetScalarField(m_scene->GetScalarField());
 	m_marchingCube->Initialize(m_scene->GetSceneSize(), m_scene->GetSpaceResolution(), 1);
-
 //	m_camRadius = 140 * m_scene->GetSceneSize();
 }
 

@@ -2,6 +2,8 @@
 #define _Metaball_Cuda_Mgr_H_
 
 //#include <vector>
+#include <vector_types.h>
+#include <cuda_runtime_api.h>
 class SamplingGridVertice;
 
 class MetaballCudaMgr
@@ -30,12 +32,26 @@ public:
 	float *h_samplingGridVerticesScalar;
 	std::size_t d_samplingGridVerticesScalarCount;
 
-	void Scalar(const int gridSizeX, const int gridSizeY, const int gridSizeZ);
-	void ScalarCallback(SamplingGridVertice *vertex, const std::size_t vertexCount);
+	void Scalar();
+	void FetchScalarValues(SamplingGridVertice *vertex, const std::size_t vertexCount);
 
+	void SetThreadsPerBlock(const std::size_t threadsPerBlock_);
+
+//	void SetGridDim(const std::size_t gridx, const std::size_t gridy, const std::size_t gridz);
+//	void SetBlockDim(const std::size_t blockx,const std::size_t blocky,const std::size_t blockz);
 
 protected:
 	MetaballCudaMgr();
+	void launch_Scalar1D();
+	//void launch_Scalar3D();
+	void deviceQuery();
+
+
 	static MetaballCudaMgr *m_singleton;
+
+	std::size_t threadsPerBlock;
+// 	dim3 gridDim;
+// 	dim3 blockDim;
+	cudaDeviceProp deviceProp;
 };
 #endif
