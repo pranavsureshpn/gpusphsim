@@ -275,6 +275,10 @@ namespace SnowSim {
 			{
 				marchingcubeSettings.SpaceResolution = StringConverter::parseReal(value);
 			}
+			else if(name=="threadsperblock")
+			{
+				marchingcubeSettings.ThreadsPerBlock = StringConverter::parseReal(value);
+			}
 		}
 
 	}

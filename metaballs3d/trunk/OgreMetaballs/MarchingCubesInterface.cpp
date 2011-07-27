@@ -23,6 +23,8 @@ MarchingCubesInterface::~MarchingCubesInterface()
 
 void MarchingCubesInterface::Initialize(float samplingSpaceSize, float samplingResolution, float samplingThreshold)
 {
+	beforeInitialize();
+
 	m_samplingSpaceSize = samplingSpaceSize;
 	m_samplingResolution = samplingResolution;
 	m_samplingThreshold = samplingThreshold;
@@ -81,6 +83,8 @@ void MarchingCubesInterface::Initialize(float samplingSpaceSize, float samplingR
 		}
 	}
 	afterGridCubeInit();
+
+	afterInitialize();
 }
 void MarchingCubesInterface::unInitialize()
 {

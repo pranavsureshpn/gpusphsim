@@ -155,8 +155,8 @@ void MarchingCubesImplWithCuda::SampleSpace()
 		vertice.ScalarValue =  GetScalarField()->Scalar(vertice.Position);
 	}
 #else
-	MetaballCudaMgr::getSingletonPtr()->Scalar(m_nbrSamples, m_nbrSamples, m_nbrSamples);
-	MetaballCudaMgr::getSingletonPtr()->ScalarCallback(m_samplingGridVertices, m_samplingGridVerticesSize);
+	MetaballCudaMgr::getSingletonPtr()->Scalar();
+	MetaballCudaMgr::getSingletonPtr()->FetchScalarValues(m_samplingGridVertices, m_samplingGridVerticesSize);
 #endif
 }
 
@@ -277,4 +277,14 @@ void MarchingCubesImplWithCuda::afterGridCubeInit()
 {
 	printf("MarchingCubesImplWithCuda::afterGridCubeInit()\n");
 //	MetaballCudaMgr::getSingletonPtr()->();
+}
+void MarchingCubesImplWithCuda::beforeInitialize()
+{
+
+}
+void MarchingCubesImplWithCuda::afterInitialize()
+{
+//	MetaballCudaMgr::getSingletonPtr()->SetGridDim(m_nbrSamples, m_nbrSamples, m_nbrSamples);
+//	MetaballCudaMgr::getSingletonPtr()->SetBlockDim(m_nbrSamples, m_nbrSamples, m_nbrSamples);
+
 }

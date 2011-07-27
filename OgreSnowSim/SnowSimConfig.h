@@ -74,6 +74,7 @@ namespace SnowSim
 	{
 		Ogre::Real BaseRadius;
 		Ogre::Real SpaceResolution;
+		std::size_t ThreadsPerBlock;
 	};
 
 	class Config

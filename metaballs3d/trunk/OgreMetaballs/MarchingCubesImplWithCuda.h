@@ -43,7 +43,8 @@ protected:
 	virtual void freeGridCubesBuffer();
 	virtual SamplingGridVertice& GetGridVertice(int i, int j, int k);
 	virtual SamplingGridCube& GetGridCube(int i, int j, int k);
-
+	virtual void beforeInitialize();
+	virtual void afterInitialize();
 // 	SamplingGridVertice_t& GetGridVertice(int i, int j, int k);
 // 	float& GetGridScalar(int i, int j, int k);
 // 	SamplingGridCube_t& GetGridCube(int i, int j, int k);

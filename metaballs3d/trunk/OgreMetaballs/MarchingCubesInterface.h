@@ -43,6 +43,7 @@ public:
 	void unInitialize();
 	void CreateMesh();
 
+
 	DynamicMesh* GetMeshBuilder() const { return m_meshBuilder; }
 	void SetMeshBuilder(DynamicMesh* meshBuilder) { m_meshBuilder = meshBuilder; }
 
@@ -58,7 +59,8 @@ protected:
  	virtual void SampleCube(SamplingGridCube& cube)=0;
 	virtual void afterGridVerticeInit(){}
 	virtual void afterGridCubeInit(){}
-
+	virtual void beforeInitialize(){}
+	virtual void afterInitialize(){}
 	// on buffer
 	virtual void ResetGridVertexBuffer(const size_t elementNum) = 0;
 	virtual void ResetGridCubesBuffer(const size_t elementNum) = 0;
