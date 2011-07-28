@@ -161,6 +161,12 @@ void MetaballScene::ResetScene(const GridParams& gridparam)
 			m_scene->SetSpaceResolution(m_Config->marchingcubeSettings.SpaceResolution*ScaleFactor);
 			m_scene->SetSceneSize(gridparam.grid_size.x);
 			MetaballCudaMgr::getSingletonPtr()->SetThreadsPerBlock(m_Config->marchingcubeSettings.ThreadsPerBlock);
+			MetaballCudaMgr::getSingletonPtr()->SetSpaceResolution(
+				m_scene->GetSpaceResolution(),
+				m_scene->GetSpaceResolution(),
+				m_scene->GetSpaceResolution()
+			);
+	
 		}
   		break;
 	default:
