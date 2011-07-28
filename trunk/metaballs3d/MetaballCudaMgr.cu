@@ -7,6 +7,7 @@
 //#include "../SPHSimLib/cuPrintf.cu"
 
 __global__ void ScalarSphere1D(const float* position, 
+					   const float radius,
 					   const float radiusSquared,
 					   const float* gridVertex, float* scalar,
 					   const int ParticleCount, const int GridVertexCount);
@@ -140,9 +141,11 @@ void MetaballCudaMgr::launch_Scalar1D()
 	//assign a thread for each grid vertex
     int blocksPerGrid = (d_samplingGridVerticesCount + threadsPerBlock - 1) / threadsPerBlock;
 	//printf("launch_Scalar1D<<<%d, %d>>>\n", blocksPerGrid, threadsPerBlock);
+	const float Threshold = 4.0f*sphereRadius;
 
 	ScalarSphere1D<<<blocksPerGrid, threadsPerBlock>>>(
 		d_spherePosition, 
+		Threshold,
 		sphereRadius*sphereRadius,
 		d_samplingGridVertices, 
 		d_samplingGridVerticesScalar,
@@ -209,6 +212,7 @@ void MetaballCudaMgr::FetchScalarValues(SamplingGridVertice *vertex, const std::
 }
 //
 __global__ void ScalarSphere1D(const float* position, 
+					   const float threshold,
 					   const float radiusSquared,
 					   const float* gridVertexPos, float* gridVertexScalar,
 					   const int ParticleCount, const int GridVertexCount
@@ -236,6 +240,10 @@ __global__ void ScalarSphere1D(const float* position,
 			float px = position[3*pi  ];
 			float py = position[3*pi+1];
 			float pz = position[3*pi+2];
+
+			if( (px - gvx) >threshold || (px - gvx)<-threshold ) continue;
+			if( (py - gvy) >threshold || (py - gvy)<-threshold ) continue;
+			if( (pz - gvz) >threshold || (pz - gvz)<-threshold ) continue;
 
 			scalarSum += radiusSquared /((px-gvx)*(px-gvx)+ 
 										(py-gvy)*(py-gvy)+ 
