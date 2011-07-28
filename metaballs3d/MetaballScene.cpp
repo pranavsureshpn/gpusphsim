@@ -22,7 +22,7 @@ MetaballScene::MetaballScene(SnowSim::Config *config)
 m_Config(config),
 m_marchingCube(NULL),
 m_scene(NULL),
-bShowMCSurface(false),
+bShowMCSurface(true),
 bShowSPHParticles(true)
 {
 }
