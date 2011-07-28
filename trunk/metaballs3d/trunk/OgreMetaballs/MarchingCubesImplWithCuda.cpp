@@ -242,6 +242,9 @@ void MarchingCubesImplWithCuda::ResetGridVertexBuffer(const size_t elementNum)
 	MetaballCudaMgr::getSingletonPtr()
 		->mallocSamplingGridVerticesScalar(
 		m_samplingGridVerticesSize, sizeof(float));
+	
+	MetaballCudaMgr::getSingletonPtr()
+		->SetSamplesNumber(m_nbrSamples, m_nbrSamples, m_nbrSamples);
 }
 void MarchingCubesImplWithCuda::ResetGridCubesBuffer(const size_t elementNum)
 {

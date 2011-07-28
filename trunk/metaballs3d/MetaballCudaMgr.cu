@@ -7,11 +7,20 @@
 //#include "../SPHSimLib/cuPrintf.cu"
 
 __global__ void ScalarSphere1D(const float* position, 
-					   const float radius,
+					   const float threshold,
 					   const float radiusSquared,
 					   const float* gridVertex, float* scalar,
 					   const int ParticleCount, const int GridVertexCount);
+
 __global__ void ScalarSphere3D(const float* position, 
+					   const float radiusSquared,
+					   const float* gridVertex, float* scalar,
+					   const int ParticleCount, const int GridVertexCount);
+
+__global__ void ScalarSphere1D_EffectRange(const float* position, 
+					   const float3 SpaceResolution,
+					   const uint3  NBRSamples,
+					   const float radius,
 					   const float radiusSquared,
 					   const float* gridVertex, float* scalar,
 					   const int ParticleCount, const int GridVertexCount);
@@ -35,6 +44,8 @@ MetaballCudaMgr::MetaballCudaMgr()
 	threadsPerBlock = 32;
 // 	gridDim.x = gridDim.y = gridDim.z = 1;
 // 	blockDim.x = blockDim.y = blockDim.z = 1;
+
+	spaceResolution.x = spaceResolution.y = spaceResolution.z = 0.0f;
 	
 	deviceQuery();
 }
@@ -100,6 +111,7 @@ void MetaballCudaMgr::mallocSamplingGridVerticesScalar(const std::size_t element
 	d_samplingGridVerticesScalarCount = elementCount;
 	assert( d_samplingGridVerticesScalarCount == d_samplingGridVerticesCount);
 	CUDA_SAFE_CALL( cudaMalloc((void**)&d_samplingGridVerticesScalar, elementCount*elementSize) );
+	CUDA_SAFE_CALL(	cudaMemset(d_samplingGridVerticesScalar, 0, elementCount*elementSize) );
 	
 	h_samplingGridVerticesScalar = (float*)malloc(elementCount*elementSize);
 	assert(h_samplingGridVerticesScalar);
@@ -123,7 +135,8 @@ void MetaballCudaMgr::freeSamplingGridVerticesScalar()
 }
 void MetaballCudaMgr::Scalar()
 {
-	launch_Scalar1D();
+	//launch_Scalar1D();
+	launch_ScalarSphere1D_EffectRange();
 	//launch_Scalar3D();
     CUDA_SAFE_CALL( cudaMemcpy(
 			h_samplingGridVerticesScalar, 
@@ -132,6 +145,8 @@ void MetaballCudaMgr::Scalar()
 			cudaMemcpyDeviceToHost
 		) 
 	);
+	CUDA_SAFE_CALL(	cudaMemset(d_samplingGridVerticesScalar, 0, d_samplingGridVerticesScalarCount*sizeof(float)) );
+
 }
 void MetaballCudaMgr::launch_Scalar1D()
 {
@@ -209,6 +224,7 @@ void MetaballCudaMgr::FetchScalarValues(SamplingGridVertice *vertex, const std::
 	{
         vertex[i].ScalarValue = h_samplingGridVerticesScalar[i];
 	}
+
 }
 //
 __global__ void ScalarSphere1D(const float* position, 
@@ -344,5 +360,91 @@ void MetaballCudaMgr::deviceQuery()
         printf("There is no device supporting CUDA\n");
 
     cudaGetDeviceProperties(&deviceProp, 0);//device0
+
+}
+void MetaballCudaMgr::launch_ScalarSphere1D_EffectRange()
+{
+	//printf("MetaballCudaMgr::Scalar(%d, %d, %d)\n", gridSizeX, gridSizeY, gridSizeZ);
+	//dim3 grid(gridSizeX, gridSizeY, gridSizeZ);
+	//int threadsPerBlock = 32;
+	//assign a thread for each grid vertex
+    int blocksPerGrid = (d_spherePositionsCount + threadsPerBlock - 1) / threadsPerBlock;
+	//printf("launch_Scalar1D<<<%d, %d>>>\n", blocksPerGrid, threadsPerBlock);
+//	const float Threshold = 4.0f*sphereRadius;
+
+	ScalarSphere1D_EffectRange<<<blocksPerGrid, threadsPerBlock>>>(
+		d_spherePosition,
+		spaceResolution,
+		m_nbrSamples,
+		sphereRadius,
+		sphereRadius*sphereRadius,
+		d_samplingGridVertices, 
+		d_samplingGridVerticesScalar,
+		d_spherePositionsCount,
+		d_samplingGridVerticesCount
+	);
+	//cudaPrintfDisplay(stdout, true);
+    //CUDA_SAFE_CALL( cudaThreadSynchronize() );
+}
+__global__ void ScalarSphere1D_EffectRange(
+					   const float* position, 
+					   const float3 SpaceResolution,
+					   const uint3 NBRSamples,
+					   const float radius,
+					   const float radiusSquared,
+					   const float* gridVertexPos, float* gridVertexScalar,
+					   const int ParticleCount, const int GridVertexCount
+					   )
+{
+	uint blockId = blockIdx.y*gridDim.x + blockIdx.x;
+    uint pi = blockId*blockDim.x + threadIdx.x;
+#if __CUDA_ARCH__ >= 200
+	//printf("grid<%d, %d, %d>, ",                       gridDim.x,                  gridDim.y,                 gridDim.z);
+	//printf("block<%d/%d, %d/%d, %d/%d>, ",blockIdx.x, blockDim.x,     blockIdx.y, blockDim.y,    blockIdx.z, blockDim.z);
+	//printf("thread<%d, %d, %d>\n",       threadIdx.x,                threadIdx.y,               threadIdx.z            );
+#endif	
+	if( pi< ParticleCount )
+	{
+		dim3 gridCubeIdx;
+		gridCubeIdx.x = ceil(position[3*pi  ] / SpaceResolution.x);
+		gridCubeIdx.y = ceil(position[3*pi+1] / SpaceResolution.y);
+		gridCubeIdx.z = ceil(position[3*pi+2] / SpaceResolution.z);
+
+		const float N = 3;//only care of N radius effect domain.
+		const dim3 ExtendCubes(N*radius/SpaceResolution.x, N*radius/SpaceResolution.y, N*radius/SpaceResolution.z);
+		dim3 min_, max_;
+		min_.x = fmaxf(0, gridCubeIdx.x-ExtendCubes.x);
+		min_.y = fmaxf(0, gridCubeIdx.y-ExtendCubes.y);
+		min_.z = fmaxf(0, gridCubeIdx.z-ExtendCubes.z);
+		max_.x = fminf(gridCubeIdx.x+ExtendCubes.x, NBRSamples.x);
+		max_.y = fminf(gridCubeIdx.y+ExtendCubes.y, NBRSamples.y);
+		max_.z = fminf(gridCubeIdx.z+ExtendCubes.z, NBRSamples.z);
+
+		for(uint k = min_.z; k <max_.z; ++k)
+		{
+			for(uint j = min_.y; j <max_.y; ++j)
+			{
+				for(uint i = min_.x; i <max_.x; ++i)
+				{
+					uint vIdx = i + j * NBRSamples.x + k * NBRSamples.x * NBRSamples.y;
+		
+					if(vIdx<0 || vIdx>GridVertexCount)
+						continue;
+
+					float gvx = gridVertexPos[4*vIdx  ];
+					float gvy = gridVertexPos[4*vIdx+1];
+					float gvz = gridVertexPos[4*vIdx+2];
+
+					float px = position[3*pi  ];
+					float py = position[3*pi+1];
+					float pz = position[3*pi+2];
+					
+					gridVertexScalar[vIdx] += radiusSquared /((px-gvx)*(px-gvx)+ 
+															(py-gvy)*(py-gvy)+ 
+															(pz-gvz)*(pz-gvz));
+				}//for
+			}//for 
+		}//for 
+	}
 
 }
