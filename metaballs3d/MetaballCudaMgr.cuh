@@ -17,7 +17,7 @@ public:
 	void freeSpherePosition();
 	float *d_spherePosition;//float3
 	std::size_t d_spherePositionsCount;//element count
-	float sphereRadius;
+
 
 	void mallocSamplingGridVertices(const std::size_t elementCount, const std::size_t elementSize);
 	void setSamplingGridVertices(const float *src, const std::size_t elementCount);
@@ -46,20 +46,18 @@ public:
 	void SetGridDim(const std::size_t gridx, const std::size_t gridy, const std::size_t gridz);
 	void SetBlockDim(const std::size_t blockx,const std::size_t blocky,const std::size_t blockz);
 
-	void SetSpaceResolution(const float resx, const float resy, const float resz)
-	{
-		spaceResolution.x = resx;
-		spaceResolution.y = resy;
-		spaceResolution.z = resz;
-	}
-	void SetSamplesNumber(const unsigned int smplx, const unsigned int smply, const unsigned int smplz)
-	{
-		m_nbrSamples.x = smplx;
-		m_nbrSamples.y = smply;
-		m_nbrSamples.z = smplz;
-	}
-	float3 spaceResolution;
-	dim3 m_nbrSamples;
+	void SetSpaceResolution(const float resx, const float resy, const float resz);
+	void SetSamplesNumber(const unsigned int smplx, const unsigned int smply, const unsigned int smplz);
+	void MetaballCudaMgr::SetExtendCubes(const unsigned int N, const float sphereRadius_,
+		const float resx, const float resy, const float resz);
+
+
+	void initilize(
+		const unsigned int NBRSamplesX, const unsigned int NBRSamplesY, const unsigned int NBRSamplesZ,
+		const float resx, const float resy, const float resz,
+		const unsigned int N,
+		const float sphereRadius_
+		);
 
 protected:
 	MetaballCudaMgr();
@@ -75,5 +73,7 @@ protected:
 //  	dim3 gridDim;
 //  	dim3 blockDim;
 	cudaDeviceProp deviceProp;
+
+
 };
 #endif

@@ -138,5 +138,5 @@ void MetaballField::DeleteFieldBuffer()
 void MetaballField::SetSphereRaidusSquared(const Ogre::Real raidus)
 { 
 	m_radiusSquared = raidus*raidus;
-	MetaballCudaMgr::getSingletonPtr()->sphereRadius = raidus;
+//	MetaballCudaMgr::getSingletonPtr()->sphereRadius = raidus;
 }
