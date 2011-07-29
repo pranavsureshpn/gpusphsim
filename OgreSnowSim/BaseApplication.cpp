@@ -266,7 +266,7 @@ bool BaseApplication::setup(void)
 	mRoot = new Ogre::Root();
 	setupResources();
 
-	mSnowConfig = new SnowSim::Config();
+	mSnowConfig = SnowSim::Config::getSingletonPtr();
 
 	// set logging level
 	Ogre::LogManager::getSingleton().setLogDetail(mSnowConfig->generalSettings.logLevel);

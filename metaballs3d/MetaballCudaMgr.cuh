@@ -55,7 +55,7 @@ public:
 	void initilize(
 		const unsigned int NBRSamplesX, const unsigned int NBRSamplesY, const unsigned int NBRSamplesZ,
 		const float resx, const float resy, const float resz,
-		const unsigned int N,
+		const unsigned int ParticleEffectCubesScope,
 		const float sphereRadius_
 		);
 

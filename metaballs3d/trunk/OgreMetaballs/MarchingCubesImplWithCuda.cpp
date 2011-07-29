@@ -6,6 +6,9 @@
 
 #include "FieldHelper.h"
 #include "../../MetaballCudaMgr.cuh"
+#include "../../../OgreSnowSim/SnowSimConfig.h"
+
+extern float ScaleFactor;
 //-----------------------------------
 // MarchingCubesImpl
 //-----------------------------------
@@ -289,8 +292,8 @@ void MarchingCubesImplWithCuda::afterInitialize()
 	MetaballCudaMgr::getSingletonPtr()->initilize(
 		m_nbrSamples, m_nbrSamples, m_nbrSamples,
 		m_samplingResolution, m_samplingResolution, m_samplingResolution,
-		3,//extend cube count
-		10//sphereRadius
+		SnowSim::Config::getSingletonPtr()->marchingcubeSettings.ParticleEffectCubesScope,//extend cube count
+		SnowSim::Config::getSingletonPtr()->marchingcubeSettings.BaseRadius*ScaleFactor//sphereRadius
 		);
 
 }
