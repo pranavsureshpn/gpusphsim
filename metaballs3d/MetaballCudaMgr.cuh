@@ -1,7 +1,6 @@
 #ifndef _Metaball_Cuda_Mgr_H_
 #define _Metaball_Cuda_Mgr_H_
 
-//#include <vector>
 #include <vector_types.h>
 #include <cuda_runtime_api.h>
 class SamplingGridVertice;
@@ -26,7 +25,6 @@ public:
 	std::size_t d_samplingGridVerticesCount;
 
 	void mallocSamplingGridVerticesScalar(const std::size_t elementCount, const std::size_t elementSize);
-//	void setSamplingGridVerticesScalar(const float *src, const std::size_t elementCount);
 	void freeSamplingGridVerticesScalar();
 	float *d_samplingGridVerticesScalar;
 	float *h_samplingGridVerticesScalar;//float
@@ -62,7 +60,7 @@ public:
 protected:
 	MetaballCudaMgr();
 	void launch_Scalar1D();
-	void launch_ScalarSphere1D_EffectRange();
+	void launch_ScalarSphere1D_FastMarching();
 	void launch_Scalar3D();
 	void deviceQuery();
 
@@ -70,8 +68,7 @@ protected:
 	static MetaballCudaMgr *m_singleton;
 
 	std::size_t threadsPerBlock;
-//  	dim3 gridDim;
-//  	dim3 blockDim;
+
 	cudaDeviceProp deviceProp;
 
 

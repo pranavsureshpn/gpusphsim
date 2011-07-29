@@ -285,6 +285,10 @@ namespace SnowSim {
 			{
 				marchingcubeSettings.ParticleEffectCubesScope = StringConverter::parseInt(value);
 			}
+			else if(name=="samplingthreshold")
+			{
+				marchingcubeSettings.SamplingThreshold = StringConverter::parseReal(value);
+			}
 		}
 
 	}

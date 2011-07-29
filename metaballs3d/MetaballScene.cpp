@@ -182,7 +182,8 @@ void MetaballScene::ResetScene(const GridParams& gridparam)
 	//m_marchingCube = new MarchingCubesImpl(m_meshBuilder);
 	m_marchingCube = new MarchingCubesImplWithCuda(m_meshBuilder);
 	m_marchingCube->SetScalarField(m_scene->GetScalarField());
-	m_marchingCube->Initialize(m_scene->GetSceneSize(), m_scene->GetSpaceResolution(), 1);
+	m_marchingCube->Initialize(m_scene->GetSceneSize(), m_scene->GetSpaceResolution(), 
+		m_Config->marchingcubeSettings.SamplingThreshold);
 //	m_camRadius = 140 * m_scene->GetSceneSize();
 }
 
