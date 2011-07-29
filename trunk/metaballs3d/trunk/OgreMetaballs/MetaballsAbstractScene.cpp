@@ -3,7 +3,7 @@
 //-----------------------------------
 // MetaballsAbstractScene
 //-----------------------------------
-float ScaleFactor = 250.0f;
+float ScaleFactor = 1.0f;
 
 MetaballsAbstractScene::MetaballsAbstractScene(void)
 :m_SceneSize(0.0f),

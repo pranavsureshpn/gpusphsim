@@ -368,9 +368,7 @@ __global__ void ScalarSphere1D_FastMarching(
  					uint tmp = vIdx;
 					if(vIdx != tmp)
 					{
-
 						printf("over flow vIdx=%ll", vIdx);
-
 					}
 #endif
 					if(vIdx<0 || vIdx>GridVertexCount)

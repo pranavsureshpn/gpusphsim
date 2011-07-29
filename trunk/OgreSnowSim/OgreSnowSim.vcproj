@@ -591,14 +591,6 @@
 					>
 				</File>
 				<File
-					RelativePath="..\metaballs3d\trunk\OgreMetaballs\CascadeScene.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\metaballs3d\trunk\OgreMetaballs\CascadeScene.h"
-					>
-				</File>
-				<File
 					RelativePath="..\metaballs3d\trunk\OgreMetaballs\Common.h"
 					>
 				</File>
@@ -720,14 +712,6 @@
 							Name="VCCustomBuildTool"
 						/>
 					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MyTestScene.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MyTestScene.h"
-					>
 				</File>
 				<File
 					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MyTestScene2.cpp"

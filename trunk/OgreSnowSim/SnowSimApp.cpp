@@ -76,7 +76,7 @@ namespace SnowSim
 
 		// Setup lighting
  		//Vector3 lightdir(0.55, -0.3, 0.75);
- 		Vector3 lightdir(00, -0.85, 0);
+ 		Vector3 lightdir(00, 0.85, 0);
  		lightdir.normalise();
 	 
 	 	// PRIMARY LIGHT
