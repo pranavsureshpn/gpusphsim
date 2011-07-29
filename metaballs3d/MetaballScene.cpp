@@ -5,7 +5,7 @@
 #include "./trunk/OgreMetaballs/MarchingCubesImplWithCuda.h"
 #include "./trunk/OgreMetaballs/ScalarField3D.h"
 //#include "./trunk/OgreMetaballs/CascadeScene.h"
-#include "./trunk/OgreMetaballs/MyTestScene.h"
+//#include "./trunk/OgreMetaballs/MyTestScene.h"
 #include "./trunk/OgreMetaballs/MyTestScene2.h"
 #include "../OgreSnowSim/OgreSimRenderable.h"
 #include "../OgreSnowSim/OgreSimBuffer.h"
@@ -128,20 +128,20 @@ void MetaballScene::ResetScene(const GridParams& gridparam)
 
 	switch (m_currentSceneId)
 	{  
-	case 0:
-		{
-			m_scene = new MyTestScene();
-			m_scene->SetParticleRadius(m_Config->marchingcubeSettings.BaseRadius*ScaleFactor);
-			m_scene->SetSpaceResolution(m_Config->marchingcubeSettings.SpaceResolution*ScaleFactor);
-			m_scene->SetSceneSize(gridparam.grid_size.x);
-		}
-		break;
-	case 1:
-		m_scene = new CascadeScene();
-		m_scene->SetParticleRadius(0.5f*ScaleFactor*10.0f);
-		m_scene->SetSpaceResolution(0.09f*ScaleFactor);
-		m_scene->SetSceneSize(4.0f*ScaleFactor);
-		break;
+// 	case 0:
+// 		{
+// 			m_scene = new MyTestScene();
+// 			m_scene->SetParticleRadius(m_Config->marchingcubeSettings.BaseRadius*ScaleFactor);
+// 			m_scene->SetSpaceResolution(m_Config->marchingcubeSettings.SpaceResolution*ScaleFactor);
+// 			m_scene->SetSceneSize(gridparam.grid_size.x);
+// 		}
+// 		break;
+// 	case 1:
+// 		m_scene = new CascadeScene();
+// 		m_scene->SetParticleRadius(0.5f*ScaleFactor*10.0f);
+// 		m_scene->SetSpaceResolution(0.09f*ScaleFactor);
+// 		m_scene->SetSceneSize(4.0f*ScaleFactor);
+// 		break;
 // 	case 2:
 // 		m_scene = new TorusScene();
 //		m_scene->SetParticleRadius(?);

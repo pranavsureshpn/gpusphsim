@@ -22,13 +22,6 @@ extern float random();
 
 MyTestScene2::MyTestScene2()
 {
-//	m_lastSpawnTime = 0;
-//	m_lastUpdateTime = 0;
-
-//	m_nbrMaxBalls = 20;//4
-//	m_lifeTime = 3.2f*10.0f;
-//	m_baseRadius = 0.2f*ScaleFactor;
-//	m_minRadius  = 0.02f*ScaleFactor;
 }
 
 MyTestScene2::~MyTestScene2()
