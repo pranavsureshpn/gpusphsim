@@ -8,7 +8,7 @@
 //#include "HeartScene.h"
 #include "CascadeScene.h"
 #include "MyTestScene.h"
-
+#include "../../../OgreSnowSim/SnowSimConfig.h"
 //-----------------------------------
 // MetaballsFrameListener
 //-----------------------------------
@@ -94,7 +94,8 @@ void MetaballsFrameListener::ResetScene(int sceneId)
 	//Create the object responsible for the mesh creation
 	m_marchingCube = new MarchingCubesImpl(m_meshBuilder);
 	m_marchingCube->SetScalarField(m_scene->GetScalarField());
-	m_marchingCube->Initialize(m_scene->GetSceneSize(), m_scene->GetSpaceResolution(), 1);
+	m_marchingCube->Initialize(m_scene->GetSceneSize(), m_scene->GetSpaceResolution(), 
+		SnowSim::Config::getSingletonPtr()->marchingcubeSettings.SamplingThreshold);
 
     m_camRadius = 140 * m_scene->GetSceneSize();
 }

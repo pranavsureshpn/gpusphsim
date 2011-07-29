@@ -76,6 +76,7 @@ namespace SnowSim
 		Ogre::Real SpaceResolution;
 		std::size_t ThreadsPerBlock;
 		std::size_t ParticleEffectCubesScope;
+		Ogre::Real SamplingThreshold;
 	};
 
 	class Config
