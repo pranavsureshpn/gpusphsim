@@ -256,7 +256,7 @@
 				OmitFramePointers="true"
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="&quot;$(DXSDK_DIR)\include&quot;;&quot;$(NVSDKCOMPUTE_ROOT)\c\common\inc&quot;;&quot;$(CUDA_PATH)\include&quot;;..\SPHSimLib;&quot;..\..\build-boost\boost_1_42_0&quot;;&quot;E:\dev\engine\ogre\addons\mygui\3.0.1\MyGUIEngine\include-&quot;;&quot;E:\dev\engine\ogre\addons\mygui\3.0.1\Common\Input\OIS-&quot;;&quot;E:\dev\engine\ogre\addons\mygui\3.0.1\Common-&quot;;&quot;E:\dev\engine\ogre\addons\mygui\3.0.1\Common\Base\Ogre-&quot;;&quot;E:\dev\engine\ogre\addons\mygui\3.0.1\Common\BaseLayout-&quot;;&quot;E:\dev\engine\ogre\addons\mygui\3.0.1\Platforms\Ogre\OgrePlatform\include-&quot;;&quot;..\..\build-ogre\mygui-trunk-build_x64\sdk\include\MYGUI&quot;;&quot;..\..\build-ogre\ogre-1.7-svn\OgreMain\include&quot;;&quot;..\..\build-ogre\ogre-1.7-svn\RenderSystems\Direct3D9\include&quot;;&quot;..\..\build-ogre\ogre-1.7-svn\RenderSystems\GL\src\GLSL\include&quot;;&quot;..\..\build-ogre\ogre-1.7-svn\RenderSystems\GL\include&quot;;&quot;..\..\build-ogre\ogre-svn-1.7-install_x32\include\OGRE\Terrain&quot;;&quot;..\..\build-ogre\ogre-svn-1.7-install_x32\include\OGRE\Paging&quot;;&quot;..\..\build-ogre\ogre-svn-1.7-install_x32\include\OGRE&quot;;&quot;..\..\build-ogre\ogre-svn-1.7-install_x32\include\OIS&quot;;include;&quot;$(OGRE_HOME)\include\&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;;&quot;$(OGRE_HOME)\Samples\Common\include&quot;;&quot;$(OGRE_HOME)\include\OGRE\RenderSystems\GL&quot;;&quot;$(OGRE_HOME)\include\OGRE\RenderSystems\Direct3D9&quot;;&quot;E:\dev\boost\1_46_1-tmp&quot;;&quot;$(OGRE_HOME)\include\OGRE\Terrain&quot;;&quot;$(OGRE_HOME)\include\OGRE\Paging&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;OIS_DYNAMIC_LIB"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;OIS_DYNAMIC_LIB;"
 				StringPooling="true"
 				MinimalRebuild="false"
 				ExceptionHandling="1"
@@ -666,80 +666,12 @@
 					>
 				</File>
 				<File
-					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MetaballsApp.cpp"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						ExcludedFromBuild="true"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MetaballsApp.h"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						ExcludedFromBuild="true"
-						>
-						<Tool
-							Name="VCCustomBuildTool"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MetaballsFrameListener.cpp"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						ExcludedFromBuild="true"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
-					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MetaballsFrameListener.h"
-					>
-					<FileConfiguration
-						Name="Release|Win32"
-						ExcludedFromBuild="true"
-						>
-						<Tool
-							Name="VCCustomBuildTool"
-						/>
-					</FileConfiguration>
-				</File>
-				<File
 					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MyTestScene2.cpp"
 					>
 				</File>
 				<File
 					RelativePath="..\metaballs3d\trunk\OgreMetaballs\MyTestScene2.h"
 					>
-				</File>
-				<File
-					RelativePath="..\metaballs3d\trunk\OgreMetaballs\OgreMain.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						ExcludedFromBuild="true"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						ExcludedFromBuild="true"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-						/>
-					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\metaballs3d\trunk\OgreMetaballs\PlaneField.cpp"
