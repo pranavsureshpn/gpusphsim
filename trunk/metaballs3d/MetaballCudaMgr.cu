@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 __constant__ __device__ uint3 NBRSamples;
 __constant__ __device__ float3 SpaceResolution;
-__constant__ __device__ uint3 ExtendCubes;
+__constant__ __device__ uint3 ParticleEffectScope;
 __constant__ __device__ float sphereRadius;
 __constant__ __device__ float sphereRadiusSquared;
 //---------------------------------------------------------------------------
@@ -404,12 +404,12 @@ __global__ void ScalarSphere1D_EffectRange(
 		gridCubeIdx.z = ceil(position[3*pi+2] / SpaceResolution.z);
 
 		dim3 min_, max_;
-		min_.x = fmaxf(0, gridCubeIdx.x-ExtendCubes.x);
-		min_.y = fmaxf(0, gridCubeIdx.y-ExtendCubes.y);
-		min_.z = fmaxf(0, gridCubeIdx.z-ExtendCubes.z);
-		max_.x = fminf(gridCubeIdx.x+ExtendCubes.x, NBRSamples.x);
-		max_.y = fminf(gridCubeIdx.y+ExtendCubes.y, NBRSamples.y);
-		max_.z = fminf(gridCubeIdx.z+ExtendCubes.z, NBRSamples.z);
+		min_.x = fmaxf(0, gridCubeIdx.x-ParticleEffectScope.x);
+		min_.y = fmaxf(0, gridCubeIdx.y-ParticleEffectScope.y);
+		min_.z = fmaxf(0, gridCubeIdx.z-ParticleEffectScope.z);
+		max_.x = fminf(gridCubeIdx.x+ParticleEffectScope.x, NBRSamples.x);
+		max_.y = fminf(gridCubeIdx.y+ParticleEffectScope.y, NBRSamples.y);
+		max_.z = fminf(gridCubeIdx.z+ParticleEffectScope.z, NBRSamples.z);
 
 		for(uint k = min_.z; k <max_.z; ++k)
 		{
@@ -461,16 +461,16 @@ void MetaballCudaMgr::SetSpaceResolution(const float resx, const float resy, con
 	tmp.z = resz;
     CUDA_SAFE_CALL( cudaMemcpyToSymbol(SpaceResolution, &tmp, sizeof(float3)) );
 }
-void MetaballCudaMgr::SetExtendCubes(const unsigned int N, const float sphereRadius_,
+void MetaballCudaMgr::SetExtendCubes(const unsigned int ParticleEffectCubesScope, const float sphereRadius_,
 	const float resx, const float resy, const float resz)
 {
-	dim3 tmp(N*sphereRadius_/resx, N*sphereRadius_/resy, N*sphereRadius_/resz);
-    CUDA_SAFE_CALL( cudaMemcpyToSymbol(ExtendCubes, &tmp, sizeof(dim3)) );
+	dim3 tmp(ParticleEffectCubesScope*sphereRadius_/resx, ParticleEffectCubesScope*sphereRadius_/resy, ParticleEffectCubesScope*sphereRadius_/resz);
+    CUDA_SAFE_CALL( cudaMemcpyToSymbol(ParticleEffectScope, &tmp, sizeof(dim3)) );
 }
 void MetaballCudaMgr::initilize(
 	const unsigned int NBRSamplesX, const unsigned int NBRSamplesY, const unsigned int NBRSamplesZ,
 	const float resx, const float resy, const float resz,
-	const unsigned int N,
+	const unsigned int ParticleEffectCubesScope,
 	const float sphereRadius_
 )
 {
@@ -481,5 +481,5 @@ void MetaballCudaMgr::initilize(
 	const float tmp(sphereRadius_*sphereRadius_);
 	CUDA_SAFE_CALL( cudaMemcpyToSymbol(sphereRadiusSquared, &tmp, sizeof(float)) );
 
-	SetExtendCubes(N, sphereRadius_, resx, resy, resz);
+	SetExtendCubes(ParticleEffectCubesScope, sphereRadius_, resx, resy, resz);
 }

@@ -3,6 +3,8 @@
 using namespace Ogre;
 
 namespace SnowSim {
+	
+	Config* Config::m_instance = NULL;
 
 	Config::Config(const std::string& configFileName)
 		: mCfg(NULL)
@@ -277,9 +279,21 @@ namespace SnowSim {
 			}
 			else if(name=="threadsperblock")
 			{
-				marchingcubeSettings.ThreadsPerBlock = StringConverter::parseReal(value);
+				marchingcubeSettings.ThreadsPerBlock = StringConverter::parseInt(value);
+			}
+			else if(name=="particleeffectcubesscope")
+			{
+				marchingcubeSettings.ParticleEffectCubesScope = StringConverter::parseInt(value);
 			}
 		}
 
+	}
+	Config* Config::getSingletonPtr()
+	{
+		if(!m_instance)
+		{
+			m_instance = new Config();
+		}
+		return m_instance;
 	}
 }

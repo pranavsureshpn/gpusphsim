@@ -75,12 +75,13 @@ namespace SnowSim
 		Ogre::Real BaseRadius;
 		Ogre::Real SpaceResolution;
 		std::size_t ThreadsPerBlock;
+		std::size_t ParticleEffectCubesScope;
 	};
 
 	class Config
 	{
 	public:
-		Config(const std::string& configFileName = "SnowSim.cfg");
+		static Config* getSingletonPtr();
 		~Config();
 
 		GeneralSettings generalSettings;
@@ -92,15 +93,16 @@ namespace SnowSim
 		Ogre::ConfigFile* getCfg() { return mCfg; }
 
 	private:
-
 		Ogre::ConfigFile *mCfg;
-
+		
 		void loadConfig();
 		void loadSceneConfig();
 		void loadFluidConfig();
 		void loadTerrainConfig();
 		void loadMarchingCubeConfig();
-
+		
+		Config(const std::string& configFileName = "SnowSim.cfg");
+		static Config *m_instance;
 	};
 
 }
